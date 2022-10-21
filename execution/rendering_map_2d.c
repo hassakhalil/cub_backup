@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/21 12:33:05 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/21 20:00:36 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-// void	print_square(int x, int y, int off, unsigned long color) {
-
-// }
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -56,8 +52,7 @@ void	map_2d(/*take struct of data*/)
 	game.window_width = game.map_columns * game.cube;
 	game.player_x = 4*game.cube+game.cube/2;
 	game.player_y = 4*game.cube+game.cube/2;
-	game.angle = 0;
-	
+	game.angle = M_PI/2;
 
 char	map[24][24] = {
 {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
@@ -91,7 +86,8 @@ char	map[24][24] = {
 	double	j;
 	double 	k;
 	double	l;
-	double i = M_PI_4;
+	double i = 0;
+	
 	
 	 while (i < game.map_rows)
 	 {
@@ -104,15 +100,13 @@ char	map[24][24] = {
 					l = 0;
 					while (l < game.cube)
 					{
-						if (((game.cube*i+k)- game.player_y) == tan(game.angle)*((game.cube*j+l)-game.player_x))
-							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x800000);
+						if ((((game.cube*i + k) - game.player_y)) == (round(tan(game.angle)))*((game.cube*j + l) - game.player_x))
+							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0xFFFFFF);
 						else if (map[(int)i][(int)j] == '1')
 							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x008080);
 						else if (map[(int)i][(int)j] == 'P')
-						{
-							if ((k-(game.cube/2))*(k-(game.cube/2)) + (l-(game.cube/2))*(l-(game.cube/2)) <= 100)
+							if (pow((k-(game.cube/2)), 2) + pow(l-(game.cube/2), 2) <= 100)
 								my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x800000);
-						}
 						l++;
 					}
 					k++;
