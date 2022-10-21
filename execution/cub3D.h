@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/21 00:01:48 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/21 11:45:05 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 #include <stdio.h>
+#include <math.h>
 #include <mlx.h>
 /*
 typedef struct s_data {

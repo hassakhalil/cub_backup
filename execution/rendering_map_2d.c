@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/21 11:23:21 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/21 12:33:05 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ typedef struct	s_data {
 	void	*mlx_window;
 	int	map_rows;
 	int	map_columns;
-	int	cube;
+	double	cube;
 	int window_length;
 	int window_width;
 	//map file
 	char	*file_name;
 	//fill the map here
 	int	**map;
+	double	player_x;
+	double	player_y;
+	double	angle;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -51,6 +54,9 @@ void	map_2d(/*take struct of data*/)
 	game.cube = 32;
 	game.window_length = game.map_rows * game.cube;
 	game.window_width = game.map_columns * game.cube;
+	game.player_x = 4*game.cube+game.cube/2;
+	game.player_y = 4*game.cube+game.cube/2;
+	game.angle = 0;
 	
 
 char	map[24][24] = {
@@ -58,14 +64,14 @@ char	map[24][24] = {
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
-{'1','0','0','0','0','0','1','1','1','1','1','0','0','0','0','1','0','1','0','1','0','0','0','1'},
+{'1','0','0','0','P','0','1','1','1','1','1','0','0','0','0','1','0','1','0','1','0','0','0','1'},
 {'1','0','0','0','0','0','1','0','0','0','1','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','1','0','0','0','1','0','0','0','0','1','0','0','0','1','0','0','0','1'},
 {'1','0','0','0','0','0','1','0','0','0','1','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','1','1','0','1','1','0','0','0','0','1','0','1','0','1','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
-{'1','0','0','0','0','0','0','P','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
+{'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
 {'1','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','1'},
@@ -82,10 +88,10 @@ char	map[24][24] = {
 	game.mlx_window = mlx_new_window(game.mlx, game.window_width, game.window_length, "cub3d");
 	game.img = mlx_new_image(game.mlx, game.window_width, game.window_length);
 	game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian);
-	int	j;
-	int k;
-	int	l;
-	int i = 0;
+	double	j;
+	double 	k;
+	double	l;
+	double i = M_PI_4;
 	
 	 while (i < game.map_rows)
 	 {
@@ -98,9 +104,11 @@ char	map[24][24] = {
 					l = 0;
 					while (l < game.cube)
 					{
-						if (map[i][j] == '1')
+						if (((game.cube*i+k)- game.player_y) == tan(game.angle)*((game.cube*j+l)-game.player_x))
+							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x800000);
+						else if (map[(int)i][(int)j] == '1')
 							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x008080);
-						else if (map[i][j] == 'P')
+						else if (map[(int)i][(int)j] == 'P')
 						{
 							if ((k-(game.cube/2))*(k-(game.cube/2)) + (l-(game.cube/2))*(l-(game.cube/2)) <= 100)
 								my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x800000);
