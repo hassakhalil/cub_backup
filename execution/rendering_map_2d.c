@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/21 09:34:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/21 11:23:21 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,12 @@ char	map[24][24] = {
 					while (l < game.cube)
 					{
 						if (map[i][j] == '1')
-							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x00FF0000);
+							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x008080);
 						else if (map[i][j] == 'P')
-							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x556B2F);
+						{
+							if ((k-(game.cube/2))*(k-(game.cube/2)) + (l-(game.cube/2))*(l-(game.cube/2)) <= 100)
+								my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x800000);
+						}
 						l++;
 					}
 					k++;
