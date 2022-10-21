@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/21 20:00:36 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/21 20:15:16 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	map_2d(/*take struct of data*/)
 	game.window_width = game.map_columns * game.cube;
 	game.player_x = 4*game.cube+game.cube/2;
 	game.player_y = 4*game.cube+game.cube/2;
-	game.angle = M_PI/2;
+	game.angle = M_PI_2;
 
 char	map[24][24] = {
 {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
@@ -100,7 +100,9 @@ char	map[24][24] = {
 					l = 0;
 					while (l < game.cube)
 					{
-						if ((((game.cube*i + k) - game.player_y)) == (round(tan(game.angle)))*((game.cube*j + l) - game.player_x))
+						if (game.angle == M_PI_2)
+							my_mlx_pixel_put(&game, game.player_x,  game.cube*i+k, 0xFFFFFF);
+						if (round(((game.cube*i + k) - game.player_y)) == round((tan(game.angle))*((game.cube*j + l) - game.player_x)))
 							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0xFFFFFF);
 						else if (map[(int)i][(int)j] == '1')
 							my_mlx_pixel_put(&game, game.cube*j+l, game.cube*i+k, 0x008080);
