@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/21 11:45:05 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/23 00:46:22 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,31 @@
 #include <stdio.h>
 #include <math.h>
 #include <mlx.h>
-/*
-typedef struct s_data {
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct	s_data {
+	void	*mlx;
+	void	*mlx_window;
 	int	map_rows;
 	int	map_columns;
-	int	cube;
+	double	cube;
 	int window_length;
 	int window_width;
-	int	**map;
+	//map file
+	//char	*file_name;
+	//fill the map here
+	char	**map;
+	double	player_x;
+	double	player_y;
+	double	angle;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }				t_data;
-*/
 
+void	render(t_data *game);
 //void	map_2d(/*take struct of data*/);
 #endif
