@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/23 16:29:46 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:55:08 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	key_hook(int keycode, t_data *game)
 		//game->player_y = round(tan(game->angle)*game->player_x);
 		game->player_y = game->player_y - 10*sin(game->angle);
 
-	}	
+	}
+	mlx_destroy_image(game->mlx, game->img);
 	render(game);
 	return (0);
 }
@@ -62,6 +63,8 @@ void	render(t_data *game)
 	int l;
 
 	i = 0;
+	game->img = mlx_new_image(game->mlx, game->window_width, game->window_length);
+	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	while (i < game->map_rows)
 	{
  			j = 0;
@@ -108,8 +111,6 @@ int main()
 	game->angle = M_PI;
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->window_width, game->window_length, "cub3d");
-	game->img = mlx_new_image(game->mlx, game->window_width, game->window_length);
-	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	(game->map)[0] = strdup("111111111111111111111111");
 	(game->map)[1] = strdup("100000000000000000000001");
 	(game->map)[2] = strdup("100000000000000000000001");
