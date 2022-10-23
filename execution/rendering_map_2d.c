@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/23 17:55:08 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:51:58 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,65 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	key_hook(int keycode, t_data *game)
+int	wall(t_data *game, int keycode)
 {
-	//debug
-	dprintf(2, "key { %d }\n", keycode);
-	//end debug
-	if (keycode == 123)
+	double	tmp_x;
+	double	tmp_y;
+	int		i;
+	int		j;
+
+	if (keycode == 126)
 	{
-		//left
-		game->angle= game->angle - M_PI/10;
-	}
-	else if (keycode == 124)
-	{
-		game->angle =game->angle + M_PI/10;
-		//rotate right
-	}
-	else if (keycode == 126)
-	{
-		//move forward
-		game->player_x = game->player_x + 10*cos(game->angle);
-		//game->player_y = round(tan(game->angle)*game->player_x);
-		game->player_y = game->player_y + 10*sin(game->angle);
+			tmp_x = game->player_x + 8*cos(game->angle);
+			tmp_y = game->player_y + 8*sin(game->angle);
 	}
 	else if (keycode == 125)
 	{
-		//move backward
-		game->player_x = game->player_x - 10*cos(game->angle);
-		//game->player_y = round(tan(game->angle)*game->player_x);
-		game->player_y = game->player_y - 10*sin(game->angle);
+			tmp_x = game->player_x - 8*cos(game->angle);
+			tmp_y = game->player_y - 8*sin(game->angle);
+	}
+	i = 0;
+	while (i < game->map_rows)
+	{
+		j = 0;
+		while (j < game->map_columns)
+		{
+			if (((tmp_x >= j*game->cube) && (tmp_x <= (j+1)*game->cube)) && ((tmp_y >= i*game->cube) && (tmp_y <= (i+1)*game->cube)))
+			{
+				if (game->map[i][j] == '1')
+					return (1);
+				else
+					return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);	
+}
+
+int	key_hook(int keycode, t_data *game)
+{
+
+	if (keycode == 123)
+		game->angle= game->angle - 8*M_PI/180;
+	else if (keycode == 124)
+		game->angle = game->angle + 8*M_PI/180;
+	else if (keycode == 126)
+	{
+		if (!wall(game, keycode))
+		{
+			game->player_x = game->player_x + 8*cos(game->angle);
+			game->player_y = game->player_y + 8*sin(game->angle);
+		}
+	}
+	else if (keycode == 125)
+	{
+		if (!wall(game, keycode))
+		{
+			game->player_x = game->player_x - 8*cos(game->angle);
+			game->player_y = game->player_y - 8*sin(game->angle);
+		}
 
 	}
 	mlx_destroy_image(game->mlx, game->img);
@@ -76,7 +107,7 @@ void	render(t_data *game)
 					l = 0;
 					while (l < game->cube)
 					{
-						if (game->angle == M_PI_2)
+						if (fabs(game->angle) == M_PI_2)
 							my_mlx_pixel_put(game, game->player_x,  game->cube*i+k, 0xFFFFFF);
 						if (round(((game->cube*i + k) - game->player_y)) == round((tan(game->angle))*((game->cube*j + l) - game->player_x)))
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0xFFFFFF);
@@ -108,7 +139,7 @@ int main()
 	game->window_width = game->map_columns * game->cube;
 	game->player_x = round(4*game->cube + game->cube/2);
 	game->player_y = round(4*game->cube + game->cube/2);
-	game->angle = M_PI;
+	game->angle = M_PI_2;
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->window_width, game->window_length, "cub3d");
 	(game->map)[0] = strdup("111111111111111111111111");
