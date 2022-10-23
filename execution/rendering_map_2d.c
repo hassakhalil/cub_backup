@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/23 00:46:22 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/23 01:51:19 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	key_hook(int keycode, t_data *game)
 {
+	//debug
+	dprintf(2, "key { %d }\n", keycode);
+	//end debug
 	if (keycode == 123)
 	{
 		//left
@@ -32,27 +35,30 @@ int	key_hook(int keycode, t_data *game)
 		game->angle =game->angle + M_PI/10;
 		//rotate right
 	}
-	/*else if (keycode == 38)
+	else if (keycode == 124)
 	{
 		//move forward
-		game->pla
-	} 
-	else if (keycode == 40)
+		game->player_y = game->player_y + 100;
+		//game->player_y = round(tan(game->angle)*game->player_x);
+		game->player_x = game->player_x +100;
+	}
+	else if (keycode == 125)
 	{
 		//move backward
-		
-	}
-	*/	
+		game->player_y = game->player_y - 100;
+		//game->player_y = round(tan(game->angle)*game->player_x);
+		game->player_x = game->player_x - 100;
+	}	
 	render(game);	 
 	return (0);
 }
 
 void	render(t_data *game)
 {
-	int	j;
-	int 	k;
-	int	l;
-	int i = 0;
+	int i;
+	int j;
+	int k;
+	int l;
 
 	i = 0;
 	while (i < game->map_rows)
@@ -72,7 +78,7 @@ void	render(t_data *game)
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0xFFFFFF);
 						else if ((game->map)[i][j] == '1')
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0x008080);
-						else if ((game->map)[i][j] == 'P')
+						else if (game->cube*i + k == game->player_y && game->cube*j + l == game->player_x)
 							if (pow((k-(game->cube/2)), 2) + pow(l-(game->cube/2), 2) <= 100)
 								my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0x800000);
 						l++;
