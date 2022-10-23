@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/23 01:51:19 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/23 16:16:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,22 @@ int	key_hook(int keycode, t_data *game)
 		game->angle =game->angle + M_PI/10;
 		//rotate right
 	}
-	else if (keycode == 124)
+	else if (keycode == 126)
 	{
 		//move forward
-		game->player_y = game->player_y + 100;
+		game->player_x = game->player_x + 10*cos(game->angle);
 		//game->player_y = round(tan(game->angle)*game->player_x);
-		game->player_x = game->player_x +100;
+		game->player_y = game->player_y + 10*sin(game->angle);
 	}
 	else if (keycode == 125)
 	{
 		//move backward
-		game->player_y = game->player_y - 100;
+		game->player_x = game->player_x - 10*cos(game->angle);
 		//game->player_y = round(tan(game->angle)*game->player_x);
-		game->player_x = game->player_x - 100;
+		game->player_y = game->player_y - 10*sin(game->angle);
+
 	}	
-	render(game);	 
+	render(game);
 	return (0);
 }
 
@@ -78,9 +79,14 @@ void	render(t_data *game)
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0xFFFFFF);
 						else if ((game->map)[i][j] == '1')
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0x008080);
-						else if (game->cube*i + k == game->player_y && game->cube*j + l == game->player_x)
+						else if (round(game->cube*i + k) == round(game->player_y) && round(game->cube*j + l) == round(game->player_x))
+						{
+							//debug
+							dprintf(2, "heeeeeeeeeeeere/n");
+							//end debug
 							if (pow((k-(game->cube/2)), 2) + pow(l-(game->cube/2), 2) <= 100)
 								my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0x800000);
+						}
 						l++;
 					}
 					k++;
@@ -103,8 +109,8 @@ int main()
 	game->cube = 32;
 	game->window_length = game->map_rows * game->cube;
 	game->window_width = game->map_columns * game->cube;
-	game->player_x = 4*game->cube + game->cube/2;
-	game->player_y = 4*game->cube + game->cube/2;
+	game->player_x = round(4*game->cube + game->cube/2);
+	game->player_y = round(4*game->cube + game->cube/2);
 	game->angle = M_PI;
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->window_width, game->window_length, "cub3d");
