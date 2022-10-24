@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/24 01:18:30 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/24 01:21:37 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,6 @@ int	key_hook(int keycode, t_data *game)
 			game->player_y = game->player_y - 8*sin(game->angle);
 		}
 	}
-	//debug
-	dprintf(2, "angle == { %f }\n", game->angle);
-	//end debug
 	mlx_destroy_image(game->mlx, game->img);
 	render(game);
 	return (0);
