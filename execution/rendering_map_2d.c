@@ -6,11 +6,41 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/24 21:36:23 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/24 22:19:30 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	get_inter_point(t_data *game, double *inter_x, double *inter_y, double ang)
+{
+	int	i;
+	int j;
+
+
+	*inter_x = game->player_x + cos(game->angle + ang)*game->cube/2;
+	*inter_y = game->player_y + sin(game->angle + ang)*game->cube/2;	
+	while(1)
+	{
+		*inter_x += cos(game->angle + ang)*game->cube/2;
+		*inter_y += sin(game->angle + ang)*game->cube/2;
+		i = 0;
+		while (i < game->map_rows)
+		{
+			j = 0;
+			while (j < game->map_columns)
+			{
+				if (((*inter_x >= j*game->cube) && (*inter_x <= (j+1)*game->cube)) && ((*inter_y >= i*game->cube) && (*inter_y <= (i+1)*game->cube)))
+				{
+					if (game->map[i][j] == '1')
+						return;
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -116,13 +146,19 @@ void	render(t_data *game)
 	int j;
 	int k;
 	int l;
+	double inter_x;
+	double inter_y;
+	
 
 	i = 0;
 	game->img = mlx_new_image(game->mlx, game->window_width, game->window_length);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
-	DDA(game->player_x, game->player_y, game->player_x + 100*cos(game->angle),game->player_y + 100*sin(game->angle), game);
-	DDA(game->player_x, game->player_y, game->player_x + 100*cos(game->angle + M_PI/6),game->player_y + 100*sin(game->angle + M_PI/6), game);
-	DDA(game->player_x, game->player_y, game->player_x + 100*cos(game->angle - M_PI/6),game->player_y + 100*sin(game->angle - M_PI/6), game);
+	get_inter_point(game, &inter_x, &inter_y, 0);
+	DDA(game->player_x, game->player_y, inter_x, inter_y, game);
+	get_inter_point(game, &inter_x, &inter_y, M_PI/6);
+	DDA(game->player_x, game->player_y, inter_x, inter_y, game);
+	get_inter_point(game, &inter_x, &inter_y, (-1)*M_PI/6);
+	DDA(game->player_x, game->player_y, inter_x,inter_y, game);
 	
 	while (i < game->map_rows)
 	{
