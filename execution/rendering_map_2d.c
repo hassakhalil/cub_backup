@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/24 01:21:37 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/24 21:36:23 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,9 @@ void	render(t_data *game)
 	game->img = mlx_new_image(game->mlx, game->window_width, game->window_length);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 	DDA(game->player_x, game->player_y, game->player_x + 100*cos(game->angle),game->player_y + 100*sin(game->angle), game);
+	DDA(game->player_x, game->player_y, game->player_x + 100*cos(game->angle + M_PI/6),game->player_y + 100*sin(game->angle + M_PI/6), game);
+	DDA(game->player_x, game->player_y, game->player_x + 100*cos(game->angle - M_PI/6),game->player_y + 100*sin(game->angle - M_PI/6), game);
+	
 	while (i < game->map_rows)
 	{
  			j = 0;
