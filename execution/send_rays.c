@@ -6,11 +6,25 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 00:46:38 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/25 02:35:09 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+// double	check_hor_inter(t_data *game, double *x_hor, double *y_hor, double ang)
+// {
+// 	double	Xa;
+// 	double	Ya;
+// 	Xa = game->cube/tan(game->angle + ang);
+// 	Ya = game->cube;
+	
+// }
+
+// double	check_ver_inter(t_data *game, double *x_ver, double *y_ver, double ang)
+// {
+	
+// }
 
 // void	get_inter_point(t_data *game, double *inter_x, double *inter_y, double ang)
 // {
@@ -44,8 +58,8 @@ void	get_inter_point(t_data *game, double *inter_x, double *inter_y, double ang)
 	//check_ver_inter
 	//compare
 	//get the smallest distance 
-	*inter_x = game->player_x + cos(game->angle + ang);
-	*inter_y = game->player_y + sin(game->angle + ang);	
+	*inter_x = game->player_x;
+	*inter_y = game->player_y;	
 	while(1)
 	{
 		*inter_x += cos(game->angle + ang);
