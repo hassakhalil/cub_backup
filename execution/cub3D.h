@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/26 12:51:40 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/26 14:36:28 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct	 s_raydata {
 void	render(t_data *game);
 void DDA(double x1, double y1, double x2, double y2, t_data *game);
 int	key_hook(int keycode, t_data *game);
-int	wall(t_data *game, int keycode);
+int	wall(t_data *game, double x, double y);
 void	send_rays(t_data *game);
 void	render(t_data *game);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

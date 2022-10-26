@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/26 13:05:31 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/26 14:42:17 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,26 @@
 
 void	check_hor_inter(t_data *game, t_raydata *ray, double ang)
 {
-		//
+	ray->delta_y = game->cube;
+	if (!((game->angle + ang) > 0 && (game->angle + ang)< M_PI))
+			ray->delta_y *= -1;
+	ray->delta_x = game->cube / tan(game->angle + ang);
+	if ((!((game->angle + ang) < M_PI_2  || (game->angle + ang) > 1.5*M_PI) && ray->delta_x > 0) || (((game->angle + ang) < M_PI_2  || (game->angle + ang) > 1.5*M_PI) && ray->delta_x < 0))
+		ray->delta_x *= -1;
+	while (!wall(game, ray->inter_x, ray->inter_x))
+	{
+		ray->inter_x += ray->delta_x;
+		ray->inter_y += ray->delta_y;
+	}
+	ray->x_hor = ray->inter_x;
+	ray->y_hor = ray->inter_y;
+	ray->d_hor = hypot(ray->x_hor, ray->y_hor);
 }
 
-void	check_ver_inter(t_data *game, t_raydata *ray, double ang)
-{
+// void	check_ver_inter(t_data *game, t_raydata *ray, double ang)
+// {
 	
-}
+// }
 
 void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 {
@@ -39,7 +52,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	//get horizontal inter point
 	check_hor_inter(game, ray, ang);
 	//get vertical inter point
-	check_ver_inter(game, ray, ang);
+	//check_ver_inter(game, ray, ang);
 	//compare them and select the smallest
 	if (ray->d_hor < ray->d_ver)
 	{

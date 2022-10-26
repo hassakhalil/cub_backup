@@ -6,28 +6,28 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:38:57 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 02:47:04 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/26 14:40:44 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	wall(t_data *game, int keycode)
+int	wall(t_data *game, double x, double y)
 {
-	double	new_x = 0;
-	double	new_y=0;
-
-	if (keycode == 126)
+	int	i;
+	int j;
+	
+	i = 0;
+	while (i < game->map_rows)
 	{
-			new_x = game->player_x + 8*cos(game->angle);
-			new_y = game->player_y + 8*sin(game->angle);
+		j = 0;
+		while (j < game->map_columns)
+		{
+			if ((y >= (game->cube * i) && y <= (game->cube * (i+1)) && x >= (game->cube*j) && x <= (game->cube * (j+1))) && game->map[i][j] == '1')
+				return (1);
+			j++;
+		}
+		i++;
 	}
-	else if (keycode == 125)
-	{
-			new_x = game->player_x - 8*cos(game->angle);
-			new_y = game->player_y - 8*sin(game->angle);
-	}
-	if (game->map[(int)new_y][(int)new_x] == '1')
-		return (1);
 	return (0);
 }
