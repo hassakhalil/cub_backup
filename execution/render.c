@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 02:35:04 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/25 18:19:48 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	render(t_data *game)
 			}
 			i++;
 	}
-	//send_rays(game);
+	send_rays(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);
 	mlx_key_hook(game->mlx_window, key_hook, game);
 	mlx_loop(game->mlx);

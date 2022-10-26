@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 02:35:09 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/26 11:18:02 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,26 @@
 	
 // }
 
-// void	get_inter_point(t_data *game, double *inter_x, double *inter_y, double ang)
-// {
-// 	double	x_hor;
-// 	double	y_hor;
-// 	double	x_ver;
-// 	double	y_ver;
-// 	double	d_hor;
-// 	double	d_ver;
-
+void	get_inter_point(t_data *game, double *inter_x, double *inter_y, double ang)
+{
+	double	delta_x;
+	double	delta_y;
+	
+	//this is first inter point
+	*inter_y = floor(game->player_y / game->cube) * game->cube;
+	if (game->angle > 0 && game->angle < M_PI)
+		*inter_y += game->cube;
+	*inter_x = game->player_x + (*inter_y - game->player_y) / tan(game->angle);
+	delta_y = game->cube;
+	if (!(game->angle > 0 && game->angle < M_PI))
+			delta_y *= -1;
+	delta_x = game->cube / tan(game->angle);
+	if ((!(game->angle < M_PI_2  || game->angle > 1.5*M_PI) && delta_x > 0) || ((game->angle < M_PI_2  || game->angle > 1.5*M_PI) && delta_x < 0))
+		delta_x *= -1;
+	//check_hor_inter
+	//check_ver_inter
+	//compare
+	//get the smallest distance
 // 	d_hor = check_hor_inter(game, &x_hor, &y_hor, ang);
 // 	d_ver = check_ver_inter(game, &x_ver, &y_ver, ang);
 // 	if (d_hor < d_ver)
@@ -48,38 +59,6 @@
 // 		*inter_y = y_ver;
 // 	}
 // }
-
-void	get_inter_point(t_data *game, double *inter_x, double *inter_y, double ang)
-{
-	int	i;
-	int j;
-
-	//check_hor_inter
-	//check_ver_inter
-	//compare
-	//get the smallest distance 
-	*inter_x = game->player_x;
-	*inter_y = game->player_y;	
-	while(1)
-	{
-		*inter_x += cos(game->angle + ang);
-		*inter_y += sin(game->angle + ang);
-		i = 0;
-		while (i < game->map_rows)
-		{
-			j = 0;
-			while (j < game->map_columns)
-			{
-				if (((*inter_x >= j*game->cube) && (*inter_x <= (j+1)*game->cube)) && ((*inter_y >= i*game->cube) && (*inter_y <= (i+1)*game->cube)))
-				{
-					if (game->map[i][j] == '1')
-						return;
-				}
-				j++;
-			}
-			i++;
-		}
-	}
 }
 
 void	send_rays(t_data *game)

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:38:57 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 00:39:30 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/25 02:47:04 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,20 @@
 
 int	wall(t_data *game, int keycode)
 {
-	double	tmp_x;
-	double	tmp_y;
-	int		i;
-	int		j;
+	double	new_x = 0;
+	double	new_y=0;
 
 	if (keycode == 126)
 	{
-			tmp_x = game->player_x + 8*cos(game->angle);
-			tmp_y = game->player_y + 8*sin(game->angle);
+			new_x = game->player_x + 8*cos(game->angle);
+			new_y = game->player_y + 8*sin(game->angle);
 	}
 	else if (keycode == 125)
 	{
-			tmp_x = game->player_x - 8*cos(game->angle);
-			tmp_y = game->player_y - 8*sin(game->angle);
+			new_x = game->player_x - 8*cos(game->angle);
+			new_y = game->player_y - 8*sin(game->angle);
 	}
-	i = 0;
-	while (i < game->map_rows)
-	{
-		j = 0;
-		while (j < game->map_columns)
-		{
-			if (((tmp_x >= j*game->cube) && (tmp_x <= (j+1)*game->cube)) && ((tmp_y >= i*game->cube) && (tmp_y <= (i+1)*game->cube)))
-			{
-				if (game->map[i][j] == '1')
-					return (1);
-				else
-					return (0);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);	
+	if (game->map[(int)new_y][(int)new_x] == '1')
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 00:47:42 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/26 00:33:10 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct	s_data {
 	void	*mlx_window;
 	int	map_rows;
 	int	map_columns;
+	double	resolution_x;
+	double	resolution_y;
 	double	cube;
 	int window_length;
 	int window_width;
