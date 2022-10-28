@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 05:13:55 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 16:17:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	hor_inter(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
-
+	double	correct;
+	
+	correct = 0;
 	ray_ang =  norm_angle(ang);
 	//first intersection
 	ray->y_hor = floor(game->player_y / game->cube) * game->cube;
 	if (ray_ang > 0 && ray_ang < M_PI)
 		ray->y_hor += game->cube;
 	else
-		ray->y_hor -= 1;
+		correct = -1;
 	ray->x_hor = game->player_x + (ray->y_hor - game->player_y) / tan(ray_ang);
 	//finding delta x and delta y
 	ray->delta_y = game->cube;
@@ -31,7 +33,7 @@ void	hor_inter(t_data *game, t_raydata *ray, double ang)
 	ray->delta_x = game->cube / tan(ray_ang);
 	if ((!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && ray->delta_x > 0) || ((ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && ray->delta_x < 0))
 		ray->delta_x *= -1;
-	while (wall(game, ray->x_hor, ray->y_hor) != 1 &&ray->x_hor > 0 && ray->y_hor > 0 && ray->x_hor < game->window_width && ray->y_hor < game->window_length)
+	while (wall(game, ray->x_hor, ray->y_hor + correct) != 1 &&ray->x_hor > 0 && ray->y_hor > 0 && ray->x_hor < game->window_width && ray->y_hor < game->window_length)
 	{
 		ray->x_hor += ray->delta_x;
 		ray->y_hor += ray->delta_y;
@@ -42,14 +44,16 @@ void	hor_inter(t_data *game, t_raydata *ray, double ang)
 void	ver_inter(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
-
+	double	correct;
+	
+	correct = 0;
 	ray_ang = norm_angle(ang);
 		//first intersection
 	ray->x_ver = floor(game->player_x / game->cube) * game->cube;
 	if (ray_ang < M_PI_2  || ray_ang > 1.5*M_PI)
 		ray->x_ver += game->cube;
 	else
-		ray->x_ver -= 1;
+		correct = -1;
 	ray->y_ver = game->player_y + (ray->x_ver - game->player_x)*tan(ray_ang);
 	//finding delta y and delta x
 	ray->delta_x = game->cube;
@@ -58,7 +62,7 @@ void	ver_inter(t_data *game, t_raydata *ray, double ang)
 	ray->delta_y = game->cube * tan(ray_ang);
 	if ((!(ray_ang > 0 && ray_ang < M_PI) && ray->delta_y > 0) || ((ray_ang > 0 && ray_ang < M_PI) && ray->delta_y < 0))
 		ray->delta_y *= -1;
-	while (wall(game, ray->x_ver, ray->y_ver) != 1 &&ray->x_ver > 0 && ray->y_ver > 0 && ray->x_ver < game->window_width && ray->y_ver < game->window_length)
+	while (wall(game, ray->x_ver + correct, ray->y_ver) != 1 &&ray->x_ver > 0 && ray->y_ver > 0 && ray->x_ver < game->window_width && ray->y_ver < game->window_length)
 	{
 		ray->x_ver += ray->delta_x;
 		ray->y_ver += ray->delta_y;
