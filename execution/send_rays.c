@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 04:08:18 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 05:09:47 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	hor_inter(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
 
-	ray_ang =  norm_angle(game->angle + ang);
+	ray_ang =  norm_angle(ang);
 	//first intersection
 	ray->y_hor = floor(game->player_y / game->cube) * game->cube;
 	if (ray_ang > 0 && ray_ang < M_PI)
@@ -43,7 +43,7 @@ void	ver_inter(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
 
-	ray_ang =  norm_angle(game->angle + ang);
+	ray_ang = norm_angle(ang);
 		//first intersection
 	ray->x_ver = floor(game->player_x / game->cube) * game->cube;
 	if (ray_ang < M_PI_2  || ray_ang > 1.5*M_PI)
@@ -96,15 +96,21 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 
 void	send_rays(t_data *game)
 {
+	int	i;
+	double	ray_angle;
 	t_raydata *ray0 = malloc(sizeof(t_raydata));
 	//t_raydata *ray1 = malloc(sizeof(t_raydata));
 	//t_raydata *ray2 = malloc(sizeof(t_raydata));
-	//pass just the game and ray structs
-	//send resolution_x rays and store the distances
-	//draw with every ray with dda
 
-	get_inter_point(game, ray0, 0);
-	DDA(game->player_x, game->player_y, ray0->inter_x, ray0->inter_y, game);
+	ray_angle = game->angle - game->fov/2;
+	i = 0;
+	while (i < game->num_of_rays)
+	{
+		get_inter_point(game, ray0, ray_angle);
+		DDA(game->player_x, game->player_y, ray0->inter_x, ray0->inter_y, game);
+		ray_angle += game->fov / game->num_of_rays;
+		i++;
+	}
 	// get_inter_point(game, ray1, M_PI/6);
 	// DDA(game->player_x, game->player_y, ray1->inter_x, ray1->inter_y, game);
 	// get_inter_point(game, ray2, (-1)*M_PI/6);

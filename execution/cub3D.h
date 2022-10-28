@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/27 23:53:19 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 05:05:49 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct	s_data {
 	//char	*file_name;
 	//fill the map here
 	char	**map;
+	double	fov;
+	int		num_of_rays;
 	double	player_x;
 	double	player_y;
 	double	angle;
