@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 14:47:09 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 15:31:27 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main()
 {
+	//add player direction (N == 3*M_PI/2, S == M_PI/2, E == 0, W == M_PI)
 	t_data *game = malloc(sizeof(t_data));
 	game->map = malloc(sizeof(char *)*25);
 	game->map_rows = 24;
