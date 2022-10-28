@@ -6,30 +6,29 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 01:48:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 03:09:52 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	check_hor_inter(t_data *game, t_raydata *ray, double ang)
+void	hor_inter(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
 
 	ray_ang =  norm_angle(game->angle + ang);
-	ray->inter_x = game->player_x;
 	//first intersection
-	ray->inter_y = floor(game->player_y / game->cube) * game->cube;
+	ray->y_hor = floor(game->player_y / game->cube) * game->cube;
 	if (ray_ang > 0 && ray_ang < M_PI)
 	{
 		//debug
 		dprintf(2, "{check_hor_inter} ray is facing down\n");
 		//end debug
-		ray->inter_y += game->cube;
+		ray->y_hor += game->cube;
 	}
 	else
-		ray->inter_y -= 1;
-	ray->inter_x +=(game->player_y - ray->inter_y) / tan(ray_ang);
+		ray->y_hor -= 1;
+	ray->x_hor = game->player_x + (ray->y_hor - game->player_y) / tan(ray_ang);
 	//finding delta x and delta y
 	ray->delta_y = game->cube;
 	if (!(ray_ang > 0 && ray_ang < M_PI))
@@ -45,21 +44,18 @@ void	check_hor_inter(t_data *game, t_raydata *ray, double ang)
 	dprintf(2, "{check_hor_inter} inter_x == [ %f ]\n", game->player_x);
 	dprintf(2, "{check_hor_inter} inter_y == [ %f ]\n", game->player_y);
 	//end debug
-	while (wall(game, ray->inter_x, ray->inter_y) != 1)
+	while (wall(game, ray->x_hor, ray->y_hor) != 1 &&ray->x_hor > 0 && ray->y_hor > 0 && ray->x_hor < game->window_width && ray->y_hor < game->window_length)
 	{
-		ray->inter_x += ray->delta_x;
-		ray->inter_y += ray->delta_y;
+		ray->x_hor += ray->delta_x;
+		ray->y_hor += ray->delta_y;
 	}
 	//debug
 	dprintf(2, "{check_hor_inter} after checking for walls\n");
 	//end debug
-
-	ray->x_hor = ray->inter_x;
-	ray->y_hor = ray->inter_y;
 	ray->d_hor = hypot(ray->x_hor, ray->y_hor);
 }
 
-// void	check_ver_inter(t_data *game, t_raydata *ray, double ang)
+// void	ver_inter(t_data *game, t_raydata *ray, double ang)
 // {
 	
 // }
@@ -71,7 +67,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	//end debug
 	
 	//get horizontal inter point
-	check_hor_inter(game, ray, ang);
+	hor_inter(game, ray, ang);
 	//debug
 	dprintf(2,"{get_inter_point} after {check_ver_inter}\n");
 	//end debug

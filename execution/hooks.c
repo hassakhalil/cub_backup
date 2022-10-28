@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 01:47:48 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:54:15 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double norm_angle(double angle)
 {
-	angle =  remainder(angle, 2 * M_PI);
+	angle = remainder(angle, 2 * M_PI);
 	if (angle < 0)
 		angle += 2*M_PI;
 	return (angle);
@@ -60,6 +60,9 @@ int	key_hook(int keycode, t_data *game)
 		dprintf(2, "{hooks}new y ====== [ %f ]\n", game->player_y);
 		//end debug
 	}
+	//debug
+	dprintf(2, "player angle is ================== { %f }\n", game->angle);
+	//end debug	
 	mlx_destroy_image(game->mlx, game->img);
 	render(game);
 	return (0);
