@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 14:36:31 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:47:09 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 	game->window_width = game->map_columns * game->cube;
 	game->player_x = 4*game->cube + game->cube/2;
 	game->player_y = 4*game->cube + game->cube/2;
-	game->angle = norm_angle(-M_PI_2);
+	game->angle = norm_angle(0);
 	game->fov = M_PI/3;
 	game->resolution_x = 400;
 	game->num_of_rays = game->resolution_x;
