@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 05:05:49 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:33:00 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MOV_SPEED	30
+#define ROT_SPEED	MOV_SPEED*M_PI/180
 typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_window;

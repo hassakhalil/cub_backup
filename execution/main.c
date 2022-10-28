@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 05:12:13 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:36:31 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	game->player_y = 4*game->cube + game->cube/2;
 	game->angle = norm_angle(-M_PI_2);
 	game->fov = M_PI/3;
-	game->resolution_x = 320;
+	game->resolution_x = 400;
 	game->num_of_rays = game->resolution_x;
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->window_width, game->window_length, "cub3d");

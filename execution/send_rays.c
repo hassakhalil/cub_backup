@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 05:09:47 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 05:13:55 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,4 @@ void	send_rays(t_data *game)
 		ray_angle += game->fov / game->num_of_rays;
 		i++;
 	}
-	// get_inter_point(game, ray1, M_PI/6);
-	// DDA(game->player_x, game->player_y, ray1->inter_x, ray1->inter_y, game);
-	// get_inter_point(game, ray2, (-1)*M_PI/6);
-	// DDA(game->player_x, game->player_y, ray2->inter_x, ray2->inter_y, game);
 }

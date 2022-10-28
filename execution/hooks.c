@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 02:54:15 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:29:58 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int	key_hook(int keycode, t_data *game)
 	double	new_x;
 	double	new_y;
 
+	//define speed
 	if (keycode == 123)
-		game->angle = norm_angle(game->angle - 8*M_PI/180);
+		game->angle = norm_angle(game->angle - ROT_SPEED);
 	else if (keycode == 124)
-		game->angle = norm_angle(game->angle + 8*M_PI/180);
+		game->angle = norm_angle(game->angle + ROT_SPEED);
 	else if (keycode == 126)
 	{
-		new_x = game->player_x + 8*cos(game->angle);
-		new_y = game->player_y + 8*sin(game->angle);
+		new_x = game->player_x + MOV_SPEED*cos(game->angle);
+		new_y = game->player_y + MOV_SPEED*sin(game->angle);
 		if (wall(game, new_x, new_y) != 1)
 		{
 			game->player_x = new_x;
@@ -47,8 +48,8 @@ int	key_hook(int keycode, t_data *game)
 	else if (keycode == 125)
 	{
 
-		new_x = game->player_x - 8*cos(game->angle);
-		new_y = game->player_y - 8*sin(game->angle);
+		new_x = game->player_x - MOV_SPEED*cos(game->angle);
+		new_y = game->player_y - MOV_SPEED*sin(game->angle);
 		if (wall(game, new_x, new_y) != 1)
 		{
 			game->player_x = new_x;
