@@ -6,98 +6,80 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/29 22:16:08 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/29 22:40:31 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	hor_inter(t_data *game, t_raydata *ray, double ang)
+void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
-	double	correct;
+	double	correcth;
+	double	correctv;
 	
-	correct = 0;
 	ray_ang =  norm_angle(ang);
+	///hor_inter code
 	//first intersection
+	correcth = 0;
 	ray->y_hor = floor(game->player_y / game->cube) * game->cube;
 	if (ray_ang > 0 && ray_ang < M_PI)
 		ray->y_hor += game->cube;
 	else
-		correct = -1;
+		correcth = -1;
 	ray->x_hor = game->player_x + (ray->y_hor - game->player_y) / tan(ray_ang);
 	//finding delta x and delta y
-	ray->delta_y = game->cube;
+	ray->delta_yh = game->cube;
 	if (!(ray_ang > 0 && ray_ang < M_PI))
-		ray->delta_y *= -1;
-	ray->delta_x = game->cube / tan(ray_ang);
-	if ((!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && ray->delta_x > 0) || ((ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && ray->delta_x < 0))
-		ray->delta_x *= -1;
-	while (wall(game, ray->x_hor, ray->y_hor + correct) != 1 &&ray->x_hor > 0 && ray->y_hor > 0 && ray->x_hor < game->window_width && ray->y_hor < game->window_length)
-	{
-		ray->x_hor += ray->delta_x;
-		ray->y_hor += ray->delta_y;
-	}
-	my_mlx_pixel_put(game, ray->x_hor, ray->y_hor, 0xFFFF00);
-	ray->d_hor = hypot(game->player_x - ray->x_hor, game->player_y - ray->y_hor);
-}
+		ray->delta_yh *= -1;
+	ray->delta_xh = game->cube / tan(ray_ang);
+	if ((!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && ray->delta_xh > 0) || ((ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && ray->delta_xh < 0))
+		ray->delta_xh *= -1;
 
-void	ver_inter(t_data *game, t_raydata *ray, double ang)
-{
-	double	ray_ang;
-	double	correct;
-	
-	correct = 0;
-	ray_ang = norm_angle(ang);
-		//first intersection
+	//ver_inter
+	//first intersection
+	correctv = 0;
 	ray->x_ver = floor(game->player_x / game->cube) * game->cube;
 	if (ray_ang < M_PI_2  || ray_ang > 1.5*M_PI)
 		ray->x_ver += game->cube;
 	else
-		correct = -1;
+		correctv = -1;
 	ray->y_ver = game->player_y + (ray->x_ver - game->player_x)*tan(ray_ang);
 	//finding delta y and delta x
-	ray->delta_x = game->cube;
+	ray->delta_xv = game->cube;
 	if (!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI))
-		ray->delta_x *= -1;
-	ray->delta_y = game->cube * tan(ray_ang);
-	if ((!(ray_ang > 0 && ray_ang < M_PI) && ray->delta_y > 0) || ((ray_ang > 0 && ray_ang < M_PI) && ray->delta_y < 0))
-		ray->delta_y *= -1;
-	while (wall(game, ray->x_ver + correct, ray->y_ver) != 1 &&ray->x_ver > 0 && ray->y_ver > 0 && ray->x_ver < game->window_width && ray->y_ver < game->window_length)
+		ray->delta_xv *= -1;
+	ray->delta_yv = game->cube * tan(ray_ang);
+	if ((!(ray_ang > 0 && ray_ang < M_PI) && ray->delta_yv > 0) || ((ray_ang > 0 && ray_ang < M_PI) && ray->delta_yv < 0))
+		ray->delta_yv *= -1;
+	while (1)
 	{
-		ray->x_ver += ray->delta_x;
-		ray->y_ver += ray->delta_y;
+		if (ray->x_ver > 0 && ray->y_ver > 0 && ray->x_ver < game->window_width && ray->y_ver < game->window_length)
+		{
+			if (wall(game, ray->x_ver + correctv, ray->y_ver) == 1)
+			{
+				ray->inter_x = ray->x_ver;
+				ray->inter_y = ray->y_ver;
+				ray->d = hypot(game->player_x - ray->x_ver, game->player_y - ray->y_ver);
+				break;
+			}
+			ray->x_ver += ray->delta_xv;
+			ray->y_ver += ray->delta_yv;
+		}
+		if (ray->x_hor > 0 && ray->y_hor > 0 && ray->x_hor < game->window_width && ray->y_hor < game->window_length)
+		{
+			if (wall(game, ray->x_hor, ray->y_hor + correcth) == 1)
+			{
+				ray->inter_x = ray->x_hor;
+				ray->inter_y = ray->y_hor;
+				ray->d = hypot(game->player_x - ray->x_hor, game->player_y - ray->y_hor);
+				break;
+			}
+			ray->x_hor += ray->delta_xh;
+			ray->y_hor += ray->delta_yh;
+		}
 	}
-	my_mlx_pixel_put(game, ray->x_ver, ray->y_ver, 0xFFFF00);
-	ray->d_ver = hypot(game->player_x - ray->x_ver, game->player_y - ray->y_ver);
-}
-
-void	get_inter_point(t_data *game, t_raydata *ray, double ang)
-{
-	//debug
-	dprintf(2, "{get_inter_point}\n");
-	//end debug
-	
-	//get horizontal inter point
-	hor_inter(game, ray, ang);
-	ver_inter(game, ray, ang);
-	//compare them and select the smallest
-	if (ray->d_hor < ray->d_ver)
-	{
-		ray->inter_x = ray->x_hor;
-		ray->inter_y = ray->y_hor;
-		ray->d = ray->d_hor;
-	}
-	else
-	{
-	 	ray->inter_x = ray->x_ver;
-	 	ray->inter_y = ray->y_ver;
-		ray->d = ray->d_ver;
-	}
-	//debug
-	dprintf(2, "{ get_inter_point } d_hor ==== [ %f ] & d_ver ==== [ %f ]", ray->d_hor, ray->d_ver);
-	dprintf(2, "{ get_inter_point } d =================== [ %f ]", ray->d);
-	//end debug
+	my_mlx_pixel_put(game, ray->inter_x, ray->inter_y, 0xFFFF00);
 }
 
 void	send_rays(t_data *game)
