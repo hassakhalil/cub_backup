@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 16:17:33 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/29 22:16:08 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	hor_inter(t_data *game, t_raydata *ray, double ang)
 		ray->x_hor += ray->delta_x;
 		ray->y_hor += ray->delta_y;
 	}
+	my_mlx_pixel_put(game, ray->x_hor, ray->y_hor, 0xFFFF00);
 	ray->d_hor = hypot(game->player_x - ray->x_hor, game->player_y - ray->y_hor);
 }
 
@@ -67,6 +68,7 @@ void	ver_inter(t_data *game, t_raydata *ray, double ang)
 		ray->x_ver += ray->delta_x;
 		ray->y_ver += ray->delta_y;
 	}
+	my_mlx_pixel_put(game, ray->x_ver, ray->y_ver, 0xFFFF00);
 	ray->d_ver = hypot(game->player_x - ray->x_ver, game->player_y - ray->y_ver);
 }
 
