@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/30 20:41:48 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/30 22:34:39 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	key_hook(int keycode, t_data *game)
 	}
 	else if (keycode == 125)
 	{
-
 		new_x = game->player_x - MOV_SPEED*cos(game->angle);
 		new_y = game->player_y - MOV_SPEED*sin(game->angle);
 		if (wall(game, new_x, new_y, 1) != 1)
