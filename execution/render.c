@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 18:19:48 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/30 02:07:35 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	render(t_data *game)
 					l = 0;
 					while (l < game->cube)
 					{
-						if ((game->map)[i][j] == '1')
+						if ((game->map)[i][j] == '1' && l && k)
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0x008080);
 						if (pow(((game->cube*i + k)-(game->player_y)), 2) + pow(game->cube*j + l-(game->player_x), 2) <= 100)
 							my_mlx_pixel_put(game, game->cube*j+l, game->cube*i+k, 0x800000);
