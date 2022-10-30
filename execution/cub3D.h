@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/29 22:20:12 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/30 00:47:20 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,6 @@ typedef struct	 s_raydata {
 	double	inter_x;
 	double	inter_y;
 	double	d;
-	double	d_hor;
-	double	d_ver;
-	double	x_hor;
-	double	y_hor;
-	double	x_ver;
-	double	y_ver;
-	double	delta_xh;
-	double	delta_yh;
-	double	delta_xv;
-	double	delta_yv;
-
 }	t_raydata;
 
 void	render(t_data *game);
