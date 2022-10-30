@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/30 01:24:23 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/30 20:07:03 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	{
 		if (x_ver > 0 && y_ver > 0 && x_ver < game->window_width && y_ver < game->window_length)
 		{
-			if (wall(game, x_ver + correctv, y_ver) == 1)
+			if (wall(game, x_ver + correctv, y_ver, 0) == 1)
 				break;
 			x_ver += delta_xv;
 			y_ver += delta_yv;
@@ -83,7 +83,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	{
 		if (x_hor > 0 && y_hor > 0 && x_hor < game->window_width && y_hor < game->window_length)
 		{
-			if (wall(game, x_hor, y_hor + correcth) == 1)
+			if (wall(game, x_hor, y_hor + correcth, 0) == 1)
 				break;
 			x_hor += delta_xh;
 			y_hor += delta_yh;
@@ -126,6 +126,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	}
 	my_mlx_pixel_put(game, ray->inter_x, ray->inter_y, 0xFFFF00);
 	DDA(game->player_x, game->player_y, ray->inter_x, ray->inter_y, game);
+	game->d_2_wall = hypot(game->player_x - ray->inter_x, game->player_y - ray->inter_y);
 }
 
 void	send_rays(t_data *game)
@@ -141,7 +142,7 @@ void	send_rays(t_data *game)
 	while (i < game->num_of_rays)
 	{
 		get_inter_point(game, ray0, ray_angle);
-		ray_angle += game->fov / game->num_of_rays;
+		ray_angle += norm_angle(game->fov / game->num_of_rays);
 		i++;
 	}
 }

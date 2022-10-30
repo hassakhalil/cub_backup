@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/28 14:29:58 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/30 20:41:48 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,23 @@ int	key_hook(int keycode, t_data *game)
 	{
 		new_x = game->player_x + MOV_SPEED*cos(game->angle);
 		new_y = game->player_y + MOV_SPEED*sin(game->angle);
-		if (wall(game, new_x, new_y) != 1)
+		if (wall(game, new_x, new_y, 1) != 1)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
 		}
-		//debug
-		dprintf(2, "{hooks} pressed up++++++++++++++\n");
-		dprintf(2, "{hooks}new x ====== [ %f ]\n", game->player_x);
-		dprintf(2, "{hooks}new y ====== [ %f ]\n", game->player_y);
-		//end debug
 	}
 	else if (keycode == 125)
 	{
 
 		new_x = game->player_x - MOV_SPEED*cos(game->angle);
 		new_y = game->player_y - MOV_SPEED*sin(game->angle);
-		if (wall(game, new_x, new_y) != 1)
+		if (wall(game, new_x, new_y, 1) != 1)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
 		}
-		//debug
-		dprintf(2, "{hooks} pressed down------------\n");
-		dprintf(2, "{hooks}new x ====== [ %f ]\n", game->player_x);
-		dprintf(2, "{hooks}new y ====== [ %f ]\n", game->player_y);
-		//end debug
 	}
-	//debug
-	dprintf(2, "player angle is ================== { %f }\n", game->angle);
-	//end debug	
 	mlx_destroy_image(game->mlx, game->img);
 	render(game);
 	return (0);

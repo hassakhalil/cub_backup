@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/30 00:47:20 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/30 20:07:29 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MOV_SPEED	30
+#define MOV_SPEED	8
 #define ROT_SPEED	MOV_SPEED*M_PI/180
 typedef struct	s_data {
 	void	*mlx;
@@ -40,6 +40,7 @@ typedef struct	s_data {
 	double	player_x;
 	double	player_y;
 	double	angle;
+	double	d_2_wall;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -58,7 +59,7 @@ typedef struct	 s_raydata {
 void	render(t_data *game);
 void DDA(double x1, double y1, double x2, double y2, t_data *game);
 int	key_hook(int keycode, t_data *game);
-int	wall(t_data *game, double x, double y);
+int	wall(t_data *game, double x, double y, int flag);
 void	send_rays(t_data *game);
 void	render(t_data *game);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
