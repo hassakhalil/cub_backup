@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 01:47:24 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 02:15:24 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 			ray->inter_y = y_hor;
 		}
 	}
-	my_mlx_pixel_put(game, ray->inter_x, ray->inter_y, 0xFFFF00);
-	DDA(game->player_x, game->player_y, ray->inter_x, ray->inter_y, game);
-	ray->d = hypot(game->player_x - ray->inter_x, game->player_y - ray->inter_y);
+	my_mlx_pixel_put(game, MSF*ray->inter_x, MSF*ray->inter_y, 0xFFFF00);
+	DDA(MSF*game->player_x, MSF*game->player_y, MSF*ray->inter_x, MSF*ray->inter_y, game);
+	//ray->d = hypot(game->player_x - ray->inter_x, game->player_y - ray->inter_y);
 }
 
 void	send_rays(t_data *game)
