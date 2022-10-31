@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:38:57 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/30 22:40:39 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 01:35:13 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	wall(t_data *game, double x, double y, int flag)
 {
 	int	i;
 	int j;
-	double	back_angle;
 	
 
 	if (x < 0 || x > game->window_width || y < 0 || y > game->window_length)
@@ -25,30 +24,12 @@ int	wall(t_data *game, double x, double y, int flag)
 	j = floor(x / game->cube);
 	if (flag)
 	{
-		if (flag == 2)
-	 		back_angle = norm_angle(game->angle + M_PI);
-		else
-			back_angle = norm_angle(game->angle);
-		if (M_PI < back_angle && 1.5*M_PI > back_angle)
-		{
-			if ((i + 1) <game->map_rows && (j + 1) < game->map_columns && game->map[(int)(i)][(int)(j+1)] == '1' && game->map[(int)(i+1)][(int)(j)] == '1')
-				return (1);
-		}
-		else if (1.5*M_PI < back_angle && 2*M_PI > back_angle)
-		{
-			if ((i + 1) <game->map_rows && (j - 1) < game->map_columns && game->map[(int)(i)][(int)(j-1)] == '1' && game->map[(int)(i+1)][(int)(j)] == '1')
-				return (1);
-		}
-		else if (0 < back_angle && M_PI_2 > back_angle)
-		{
-			if ((i - 1) <game->map_rows && (j - 1) < game->map_columns && game->map[(int)(i)][(int)(j-1)] == '1' && game->map[(int)(i-1)][(int)(j)] == '1')
-				return (1);
-		}
-		else if (M_PI_2 < back_angle && M_PI > back_angle)
-		{
-			if ((i - 1) <game->map_rows && (j + 1) < game->map_columns && game->map[(int)(i)][(int)(j+1)] == '1' && game->map[(int)(i-1)][(int)(j)] == '1')
-				return (1);
-		}
+		//check x vector
+		if (wall(game, x, game->player_y, 0) == 1)
+			return (1);
+		//check y vector
+		if (wall(game, game->player_x, y, 0) == 1)
+			return (1);
 	}
 	return (game->map[(int)i][(int)j] - 48);
 }
