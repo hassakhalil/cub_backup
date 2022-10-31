@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 03:56:56 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 07:48:42 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int main()
 	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
 	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
 	(game->map)[i++] = NULL;
-	//render_map(game);
 	//cast rays here
 	render_walls(game);
+	render_map(game);
+	mlx_key_hook(game->mlx_window, key_hook, game);
+	mlx_loop(game->mlx);
 }

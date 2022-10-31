@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   send_rays.c                                        :+:      :+:    :+:   */
+/*   ray_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 04:53:35 by hkhalil          ###   ########.fr       */
+/*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
+/*   Updated: 2022/10/31 06:35:48 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-//move this function to a separate file ray_distane.c 
 void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
@@ -124,24 +123,5 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 			ray->inter_x = x_hor;
 			ray->inter_y = y_hor;
 		}
-	}
-}
-
-void	draw_map_rays(t_data *game)
-{
-	int	i;
-	double	ray_angle;
-	t_raydata	*ray = malloc(sizeof(t_raydata));
-
-	ray_angle = game->angle - game->fov/2;
-	i = 0;
-	while (i < game->num_of_rays)
-	{
-		get_inter_point(game, ray, ray_angle);
-		//draw with dda
-		my_mlx_pixel_put(game, ray->inter_x, ray->inter_y, 0xFFFF00);
-		DDA(game->player_x, game->player_y, ray->inter_x, ray->inter_y, game);
-		ray_angle += norm_angle(game->fov / game->num_of_rays);
-		i++;
 	}
 }
