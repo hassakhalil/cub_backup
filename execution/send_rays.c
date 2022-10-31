@@ -6,12 +6,13 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 04:35:03 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 04:53:35 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//move this function to a separate file ray_distane.c 
 void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
@@ -126,7 +127,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	}
 }
 
-void	draw_rays_map(t_data *game)
+void	draw_map_rays(t_data *game)
 {
 	int	i;
 	double	ray_angle;
