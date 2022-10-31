@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 00:26:34 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 01:47:01 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 #define MOV_SPEED	8
 #define ROT_SPEED	MOV_SPEED*M_PI/180
+#define	MSF			0.2
 typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_window;
@@ -40,7 +41,6 @@ typedef struct	s_data {
 	double	player_x;
 	double	player_y;
 	double	angle;
-	double	d_2_wall;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
