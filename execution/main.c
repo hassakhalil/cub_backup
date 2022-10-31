@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 02:07:37 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 03:09:13 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int main()
 	game->cube = 32;
 	game->window_length = game->map_rows * game->cube;
 	game->window_width = game->map_columns * game->cube;
-	game->player_x = MSF*(22*game->cube + game->cube/2);
-	game->player_y = MSF*(23*game->cube + game->cube/2);
+	game->player_x = 22*game->cube + game->cube/2;
+	game->player_y = 23*game->cube + game->cube/2;
 	game->angle = norm_angle(0);
-	game->fov = MSF*M_PI/3;
+	game->fov = M_PI/3;
 	game->resolution_x = 3200;
 	game->num_of_rays = game->resolution_x;
 	game->mlx = mlx_init();
@@ -62,6 +62,5 @@ int main()
 	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
 	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
 	(game->map)[i++] = NULL;
-	game->cube = MSF*32;
 	render(game);
 }
