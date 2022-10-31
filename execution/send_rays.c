@@ -6,13 +6,13 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:41:45 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 03:46:45 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 04:35:03 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	get_inter_point(t_data *game, double *d, double ang)
+void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 {
 	double	ray_ang;
 	double	correcth;
@@ -27,8 +27,6 @@ void	get_inter_point(t_data *game, double *d, double ang)
 	double	y_hor = 0;
 	double	d_ver = 0;
 	double	d_hor = 0;
-	double	inter_x = 0;
-	double	inter_y = 0;
 	int	flag_ver = 0;
 	int	flag_hor = 0;
 	
@@ -100,13 +98,13 @@ void	get_inter_point(t_data *game, double *d, double ang)
 	{
 		if (flag_ver)
 		{
-			inter_x = x_hor;
-			inter_y = y_hor;
+			ray->inter_x = x_hor;
+			ray->inter_y = y_hor;
 		}
 		else
 		{
-			inter_x = x_ver;
-			inter_y = y_ver;
+			ray->inter_x = x_ver;
+			ray->inter_y = y_ver;
 		}
 		
 	}
@@ -117,34 +115,31 @@ void	get_inter_point(t_data *game, double *d, double ang)
 		d_hor = hypot(game->player_x - x_hor, game->player_y - y_hor);
 		if (d_hor > d_ver)
 		{
-			inter_x = x_ver;
-			inter_y = y_ver;
+			ray->inter_x = x_ver;
+			ray->inter_y = y_ver;
 		}
 		else
 		{
-			inter_x = x_hor;
-			inter_y = y_hor;
+			ray->inter_x = x_hor;
+			ray->inter_y = y_hor;
 		}
 	}
-	my_mlx_pixel_put(game, inter_x, inter_y, 0xFFFF00);
-	DDA(game->player_x, game->player_y, inter_x, inter_y, game);
-	*d = hypot(game->player_x - inter_x, game->player_y - inter_y);
 }
 
-void	send_rays(t_data *game)
+void	draw_rays_map(t_data *game)
 {
 	int	i;
 	double	ray_angle;
-	double	rays[game->num_of_rays];
+	t_raydata	*ray = malloc(sizeof(t_raydata));
 
 	ray_angle = game->angle - game->fov/2;
 	i = 0;
 	while (i < game->num_of_rays)
 	{
-		get_inter_point(game, &rays[i], ray_angle);
-		//debug
-		dprintf(2, "d[%d] == %f\n", i, rays[i]);
-		//end debug
+		get_inter_point(game, ray, ray_angle);
+		//draw with dda
+		my_mlx_pixel_put(game, ray->inter_x, ray->inter_y, 0xFFFF00);
+		DDA(game->player_x, game->player_y, ray->inter_x, ray->inter_y, game);
 		ray_angle += norm_angle(game->fov / game->num_of_rays);
 		i++;
 	}
