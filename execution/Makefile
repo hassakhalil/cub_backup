@@ -6,13 +6,13 @@
 #    By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 23:58:46 by hkhalil           #+#    #+#              #
-#    Updated: 2022/10/25 00:45:06 by hkhalil          ###   ########.fr        #
+#    Updated: 2022/10/31 03:37:20 by hkhalil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRC = main.c DDA.c hooks.c map_collision.c send_rays.c render.c
+SRC = main.c DDA.c hooks.c map_collision.c send_rays.c render_map.c render_walls.c
 
 OBJ = $(SRC:.c=.o)
 
