@@ -6,7 +6,7 @@
 #    By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 23:58:46 by hkhalil           #+#    #+#              #
-#    Updated: 2022/10/31 06:37:50 by hkhalil          ###   ########.fr        #
+#    Updated: 2022/10/31 11:23:51 by hkhalil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC = main.c DDA.c hooks.c map_collision.c render_map.c render_walls.c ray_dista
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

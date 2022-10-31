@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 07:47:57 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:57:17 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	render_map(t_data *game)
 						if ((game->map)[i][j] == '1')
 							my_mlx_pixel_put(game, MSF*(game->cube*j+l), MSF*(game->cube*i+k), 0x008080);
 						if (pow(((game->cube*i + k)-(game->player_y)), 2) + pow(game->cube*j + l-(game->player_x), 2) <= 100)
-							my_mlx_pixel_put(game, MSF*(game->cube*j+l), MSF*(game->cube*i+k), 0x800000);
+							my_mlx_pixel_put(game, MSF*(game->cube*j+l), MSF*(game->cube*i+k), 0xFFFFFF);
 						l++;
 					}
 					k++;

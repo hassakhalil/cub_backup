@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 07:48:25 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:19:43 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	key_hook(int keycode, t_data *game)
 	double	new_x;
 	double	new_y;
 
-	//define speed
 	if (keycode == 123)
 		game->angle = norm_angle(game->angle - ROT_SPEED);
 	else if (keycode == 124)
@@ -51,8 +50,13 @@ int	key_hook(int keycode, t_data *game)
 		}
 	}
 	mlx_destroy_image(game->mlx, game->img);
-	//apdate this function to render_walls
 	render_walls(game);
+	//debug
+	dprintf(2, "{hooks} after render_walls \n");
+	//end debug
 	render_map(game);
+	//debug
+	dprintf(2, "{hooks} after render_map \n");
+	//end debug
 	return (0);
 }
