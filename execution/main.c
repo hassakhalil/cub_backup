@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 17:14:32 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:09:11 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int main()
 	game->map = malloc(sizeof(char *)*71);
 	game->map_rows = 29;
 	game->map_columns = 70;
-	game->window_length = game->map_rows * CUBE;
-	game->window_width = game->map_columns * CUBE;
+	game->map_length = game->map_rows * CUBE;
+	game->map_width = game->map_columns * CUBE;
 	game->player_x = 22*CUBE + CUBE/2;
 	game->player_y = 23*CUBE + CUBE/2;
 	game->angle = norm_angle(0);
-	game->resolution_x = game->window_width;
+	game->resolution_x = game->map_width;
 	game->num_of_rays = game->resolution_x;
 	game->mlx = mlx_init();
-	game->mlx_window = mlx_new_window(game->mlx, game->window_width, game->window_length, "cub3d");
+	game->mlx_window = mlx_new_window(game->mlx, game->map_width, game->map_length, "cub3d");
 	
 	int	i = 0;
 	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");

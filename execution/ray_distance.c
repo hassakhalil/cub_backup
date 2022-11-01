@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:43:10 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:09:11 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 		delta_yv *= -1;
 	while (1)
 	{
-		if (x_ver > 0 && y_ver > 0 && x_ver < game->window_width && y_ver < game->window_length)
+		if (x_ver > 0 && y_ver > 0 && x_ver < game->map_width && y_ver < game->map_length)
 		{
 			if (wall(game, x_ver + correctv, y_ver, 0) == 1)
 				break;
@@ -81,7 +81,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	}
 	while (1)
 	{
-		if (x_hor > 0 && y_hor > 0 && x_hor < game->window_width && y_hor < game->window_length)
+		if (x_hor > 0 && y_hor > 0 && x_hor < game->map_width && y_hor < game->map_length)
 		{
 			if (wall(game, x_hor, y_hor + correcth, 0) == 1)
 				break;

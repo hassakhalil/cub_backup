@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:38:57 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:41:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:09:11 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	wall(t_data *game, double x, double y, int flag)
 	int j;
 	
 
-	if (x < 0 || x > game->window_width || y < 0 || y > game->window_length)
+	if (x < 0 || x > game->map_width || y < 0 || y > game->map_length)
 		return (2);
 	i = floor(y / CUBE);
 	j = floor(x / CUBE);
