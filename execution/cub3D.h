@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:17:45 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:59:14 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 #define MOV_SPEED	8
 #define ROT_SPEED	MOV_SPEED*M_PI/180
+#define	CUBE		32
+#define	FOV			M_PI/3
 //minimap scale factor 
 #define	MSF			0.2
 typedef struct	s_data {
@@ -30,14 +32,12 @@ typedef struct	s_data {
 	int	map_columns;
 	double	resolution_x;
 	double	resolution_y;
-	double	cube;
 	int window_length;
 	int window_width;
 	//map file
 	//char	*file_name;
 	//fill the map here
 	char	**map;
-	double	fov;
 	int		num_of_rays;
 	double	player_x;
 	double	player_y;

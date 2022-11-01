@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 13:44:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:43:10 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,34 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	///hor_inter code
 	//first intersection
 	correcth = 0;
-	y_hor = floor(game->player_y / game->cube) * game->cube;
+	y_hor = floor(game->player_y / CUBE) * CUBE;
 	if (ray_ang > 0 && ray_ang < M_PI)
-		y_hor += game->cube;
+		y_hor += CUBE;
 	else
 		correcth = -1;
 	x_hor = game->player_x + (y_hor - game->player_y) / tan(ray_ang);
 	//finding delta x and delta y
-	delta_yh = game->cube;
+	delta_yh = CUBE;
 	if (!(ray_ang > 0 && ray_ang < M_PI))
 		delta_yh *= -1;
-	delta_xh = game->cube / tan(ray_ang);
+	delta_xh = CUBE / tan(ray_ang);
 	if ((!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && delta_xh > 0) || ((ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && delta_xh < 0))
 		delta_xh *= -1;
 
 	//ver_inter
 	//first intersection
 	correctv = 0;
-	x_ver = floor(game->player_x / game->cube) * game->cube;
+	x_ver = floor(game->player_x / CUBE) * CUBE;
 	if (ray_ang < M_PI_2  || ray_ang > 1.5*M_PI)
-		x_ver += game->cube;
+		x_ver += CUBE;
 	else
 		correctv = -1;
 	y_ver = game->player_y + (x_ver - game->player_x)*tan(ray_ang);
 	//finding delta y and delta x
-	delta_xv = game->cube;
+	delta_xv = CUBE;
 	if (!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI))
 		delta_xv *= -1;
-	delta_yv = game->cube * tan(ray_ang);
+	delta_yv = CUBE * tan(ray_ang);
 	if ((!(ray_ang > 0 && ray_ang < M_PI) && delta_yv > 0) || ((ray_ang > 0 && ray_ang < M_PI) && delta_yv < 0))
 		delta_yv *= -1;
 	while (1)

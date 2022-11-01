@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:18:41 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:01:47 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	draw_map_rays(t_data *game)
 	double	ray_angle;
 	t_raydata	*ray = malloc(sizeof(t_raydata));
 
-	ray_angle = game->angle - game->fov/2;
+	//FOV= Pi/3
+	ray_angle = game->angle - M_PI/6;
 	i = 0;
 	while (i < game->num_of_rays)
 	{
@@ -26,7 +27,7 @@ void	draw_map_rays(t_data *game)
 		//draw with dda
 		my_mlx_pixel_put(game, MSF*ray->inter_x, MSF*ray->inter_y, 0xFFFF00);
 		DDA(MSF*game->player_x, MSF*game->player_y, MSF*ray->inter_x, MSF*ray->inter_y, game, 0x800000);
-		ray_angle += norm_angle(game->fov / game->num_of_rays);
+		ray_angle += norm_angle(FOV / game->num_of_rays);
 		i++;
 	}
 }
@@ -54,15 +55,15 @@ void	render_map(t_data *game)
 			while (j < game->map_columns)
 			{
 				k = 0;
-				while (k < game->cube)
+				while (k < CUBE)
 				{
 					l = 0;
-					while (l < game->cube)
+					while (l < CUBE)
 					{
 						if ((game->map)[i][j] == '1')
-							my_mlx_pixel_put(game, MSF*(game->cube*j+l), MSF*(game->cube*i+k), 0x008080);
-						if (pow(((game->cube*i + k)-(game->player_y)), 2) + pow(game->cube*j + l-(game->player_x), 2) <= 100)
-							my_mlx_pixel_put(game, MSF*(game->cube*j+l), MSF*(game->cube*i+k), 0xFFFFFF);
+							my_mlx_pixel_put(game, MSF*(CUBE*j+l), MSF*(CUBE*i+k), 0x008080);
+						if (pow(((CUBE*i + k)-(game->player_y)), 2) + pow(CUBE*j + l-(game->player_x), 2) <= 100)
+							my_mlx_pixel_put(game, MSF*(CUBE*j+l), MSF*(CUBE*i+k), 0xFFFFFF);
 						l++;
 					}
 					k++;

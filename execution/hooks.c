@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 11:19:43 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:43:57 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@ int	key_hook(int keycode, t_data *game)
 	}
 	mlx_destroy_image(game->mlx, game->img);
 	render_walls(game);
-	//debug
-	dprintf(2, "{hooks} after render_walls \n");
-	//end debug
 	render_map(game);
-	//debug
-	dprintf(2, "{hooks} after render_map \n");
-	//end debug
 	return (0);
 }
