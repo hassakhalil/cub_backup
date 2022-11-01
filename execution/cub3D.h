@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 18:09:32 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:19:51 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #define	FOV			M_PI/3
 //minimap scale factor 
 #define	MSF			0.2
+#define RX			3200
+#define	RY			2000
 typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_window;
