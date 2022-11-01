@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:59:22 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:14:32 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main()
 {
+	//
 	//add player direction (N == 3*M_PI/2, S == M_PI/2, E == 0, W == M_PI)
 	t_data *game = malloc(sizeof(t_data));
 	game->map = malloc(sizeof(char *)*71);
@@ -24,7 +25,7 @@ int main()
 	game->player_x = 22*CUBE + CUBE/2;
 	game->player_y = 23*CUBE + CUBE/2;
 	game->angle = norm_angle(0);
-	game->resolution_x = 3200;
+	game->resolution_x = game->window_width;
 	game->num_of_rays = game->resolution_x;
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->window_width, game->window_length, "cub3d");

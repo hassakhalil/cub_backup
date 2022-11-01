@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:59:14 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 17:05:03 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #define MOV_SPEED	8
 #define ROT_SPEED	MOV_SPEED*M_PI/180
-#define	CUBE		32
+#define	CUBE		64
 #define	FOV			M_PI/3
 //minimap scale factor 
 #define	MSF			0.2
