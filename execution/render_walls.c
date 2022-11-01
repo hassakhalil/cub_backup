@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 18:09:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 21:52:21 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	draw_wall(t_data *game)
 		rays[i] = hypot(game->player_x - ray->inter_x, game->player_y - ray->inter_y);
 		wallheight = round((game->map_length*d2pp/rays[i]));
 		if (game->map_length/2 + wallheight/2 < game->map_length)
-		{
 			DDA(i, game->map_length/2 - wallheight/2, i, game->map_length/2 + wallheight/2, game, 0x808000);
-		}
+		else
+			DDA(i, 0, i, game->map_length -1, game, 0x808000);
 		ray_angle += FOV / game->num_of_rays;
 		i++;
 	}
