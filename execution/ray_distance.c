@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 06:35:48 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/10/31 13:44:11 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 			break ;
 		}
 	}
-	if (flag_hor || flag_ver)
+	if (flag_ver || flag_hor)
 	{
 		if (flag_ver)
 		{

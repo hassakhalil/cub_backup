@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/31 10:56:12 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:17:45 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct	 s_raydata {
 }	t_raydata;
 
 void	render_map(t_data *game);
-void 	DDA(double x1, double y1, double x2, double y2, t_data *game);
+void 	DDA(double x1, double y1, double x2, double y2, t_data *game, int color);
 int		key_hook(int keycode, t_data *game);
 int		wall(t_data *game, double x, double y, int flag);
 void	draw_map_rays(t_data *game);

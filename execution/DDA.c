@@ -6,13 +6,13 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:32:10 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/25 00:33:15 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 16:17:34 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void DDA(double x1, double y1, double x2, double y2, t_data *game)
+void DDA(double x1, double y1, double x2, double y2, t_data *game, int color)
 {
   double x;
   double y;
@@ -31,7 +31,7 @@ void DDA(double x1, double y1, double x2, double y2, t_data *game)
   y = y1;
   i = 1;
   while (i <= step) {
-	my_mlx_pixel_put(game, x, y, 0x800000);
+	my_mlx_pixel_put(game, x, y, color);
     x = x + dx;
     y = y + dy;
     i = i + 1;
