@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 05:36:35 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 06:27:44 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	render_walls(t_data *game)
 	game->img = mlx_new_image(game->mlx, RX, RY);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 
+	floor_ceilling(game);
 	draw_wall(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);
 }

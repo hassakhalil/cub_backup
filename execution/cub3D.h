@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 04:21:01 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 06:41:41 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 #define	CUBE		32
 #define	FOV			M_PI/3
 //minimap scale factor 
-#define	MSF			0.2
+#define	MSF			0.1
 #define RX			1600
-#define	RY			1600
+#define	RY			1000
 
 typedef struct	s_data {
 	void	*mlx;
@@ -71,4 +71,5 @@ void	get_inter_point(t_data *game, t_raydata *t_raydata, double ang);
 void	render_walls(t_data *game);
 double 	norm_angle(double angle);
 double	ft_angle(char c);
+void	floor_ceilling(t_data *game);
 #endif
