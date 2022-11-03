@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 18:09:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 01:53:09 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,8 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 			ray->inter_y = y_hor;
 		}
 	}
+	if (round(x_ver) == round(x_hor) && round(y_ver) == round(y_hor))
+		ray->hit = 1;
+	else
+		ray->hit = 0;
 }

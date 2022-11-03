@@ -6,18 +6,15 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 18:19:51 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 04:21:01 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <stdio.h>
 #include <math.h>
-#include <mlx.h>
-#include <stdlib.h>
-#include <string.h>
+#include "../parsing/parse.h"
 
 #define MOV_SPEED	8
 #define ROT_SPEED	MOV_SPEED*M_PI/180
@@ -25,8 +22,9 @@
 #define	FOV			M_PI/3
 //minimap scale factor 
 #define	MSF			0.2
-#define RX			3200
-#define	RY			2000
+#define RX			1600
+#define	RY			1600
+
 typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_window;
@@ -36,11 +34,7 @@ typedef struct	s_data {
 	double	resolution_y;
 	int map_length;
 	int map_width;
-	//map file
-	//char	*file_name;
-	//fill the map here
 	char	**map;
-	int		num_of_rays;
 	double	player_x;
 	double	player_y;
 	double	angle;
@@ -51,6 +45,10 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 }				t_data;
 
 //ray data struct
@@ -58,6 +56,7 @@ typedef struct	 s_raydata {
 
 	double	inter_x;
 	double	inter_y;
+	int		hit;
 }	t_raydata;
 
 void	render_map(t_data *game);
@@ -70,4 +69,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 double 	norm_angle(double angle);
 void	get_inter_point(t_data *game, t_raydata *t_raydata, double ang);
 void	render_walls(t_data *game);
+double 	norm_angle(double angle);
+double	ft_angle(char c);
 #endif

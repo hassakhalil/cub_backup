@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 21:52:21 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 04:11:19 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,34 @@ void	draw_wall(t_data *game)
 	double	wallheight;
 	//distance from player to projection plan
 	double	d2pp;
-	double	rays[game->num_of_rays];
+	double	rays[RX];
 	t_raydata	*ray = malloc(sizeof(t_raydata));
 
-	ray_angle = game->angle - M_PI/6;
+	ray_angle = norm_angle(game->angle - M_PI/6);
 	i = 0;
 	d2pp = (CUBE/2)/tan(M_PI/6);
-	while (i < game->num_of_rays)
+	while (i < RX)
 	{
 		get_inter_point(game, ray, ray_angle);
 		rays[i] = hypot(game->player_x - ray->inter_x, game->player_y - ray->inter_y);
-		wallheight = round((game->map_length*d2pp/rays[i]));
-		if (game->map_length/2 + wallheight/2 < game->map_length)
-			DDA(i, game->map_length/2 - wallheight/2, i, game->map_length/2 + wallheight/2, game, 0x808000);
-		else
-			DDA(i, 0, i, game->map_length -1, game, 0x808000);
-		ray_angle += FOV / game->num_of_rays;
+		wallheight = round((RY*d2pp/rays[i]));
+			if (wallheight < RY)
+			{
+				if (!ray->hit)
+					DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x808000);
+				else
+					DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x000000);
+			}
+			else
+				DDA(i, 0, i, RY -1, game, 0x808000);
+			ray_angle += FOV / RX;
 		i++;
 	}
 }
 
 void	render_walls(t_data *game)
 {
-	game->img = mlx_new_image(game->mlx, game->map_width, game->map_length);
+	game->img = mlx_new_image(game->mlx, RX, RY);
 	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
 
 	draw_wall(game);

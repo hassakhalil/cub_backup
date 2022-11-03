@@ -6,19 +6,11 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 16:43:57 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 03:45:03 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-double norm_angle(double angle)
-{
-	angle = remainder(angle, 2 * M_PI);
-	if (angle < 0)
-		angle += 2*M_PI;
-	return (angle);
-}
 
 int	key_hook(int keycode, t_data *game)
 {

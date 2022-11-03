@@ -6,67 +6,46 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/01 18:09:11 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 04:21:46 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int main()
+//use get_inter one time
+
+int main(int ac, char **av)
 {
-	//
-	//add player direction (N == 3*M_PI/2, S == M_PI/2, E == 0, W == M_PI)
+	char	**tab;
+	t_info	*info;
+	int		fd;
+
+	//parsing
+	fd = 0;
+	(void)ac;
+	tab = init_file(av[1], fd);
+	if (to_parse(tab) != 0)
+	{
+		close(fd);
+		free_tab(tab);
+		return (0);
+	}
+	info = fill_infos(tab);
+	//execution
 	t_data *game = malloc(sizeof(t_data));
-	game->map = malloc(sizeof(char *)*71);
-	game->map_rows = 29;
-	game->map_columns = 70;
-	game->map_length = game->map_rows * CUBE;
-	game->map_width = game->map_columns * CUBE;
-	game->player_x = 22*CUBE + CUBE/2;
-	game->player_y = 23*CUBE + CUBE/2;
-	game->angle = norm_angle(0);
-	game->resolution_x = game->map_width;
-	game->num_of_rays = game->resolution_x;
+	game->map = info->map;
+	game->map_rows = info->map_y;
+	game->map_columns = info->map_x;
+	game->map_length = info->map_y * CUBE;
+	game->map_width = info->map_x * CUBE;
+	game->player_x = info->x*CUBE + CUBE/2;
+	game->player_y = info->y*CUBE + CUBE/2;
+	game->angle = ft_angle(info->dir);
 	game->mlx = mlx_init();
-	game->mlx_window = mlx_new_window(game->mlx, game->map_width, game->map_length, "cub3d");
+	game->mlx_window = mlx_new_window(game->mlx, RX, RY, "cub3d");
 	
-	int	i = 0;
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
-	(game->map)[i++] = strdup("1111000000111111111111111111111111111111111111111111111111111111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111110111111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111110011111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111110000111111111");
-	(game->map)[i++] = strdup("1111111111111111000011110001111100000000100111111111111110000111111111");
-	(game->map)[i++] = strdup("1111111111111000000011110000001111011111110111111111111110000011111111");
-	(game->map)[i++] = strdup("1111111111000000000011110000000000011111110111111111111110000001111111");
-	(game->map)[i++] = strdup("1110000000000000000011110000000000111111110111111111111110000000111111");
-	(game->map)[i++] = strdup("1111000000000000000011110000000000001111110000000011111110000000011111");
-	(game->map)[i++] = strdup("1111111111111111111111111111110111111111111111111011111111101100101111");
-	(game->map)[i++] = strdup("1111111111111111111111111111100011111111111111111011111110000000000111");
-	(game->map)[i++] = strdup("1111111111111111111111111111100011111111111111111011111110000000000011");
-	(game->map)[i++] = strdup("1111000000000000011111111000000000000000000011111000011110000000000001");
-	(game->map)[i++] = strdup("1110000000000000001111110000000000000000000011111100011110000000000001");
-	(game->map)[i++] = strdup("1111000000000000011111111001111000001111100011111000001110000010000001");
-	(game->map)[i++] = strdup("1110000000000000011111111000000000001111100011111000001110000000000011");
-	(game->map)[i++] = strdup("1111100000000000011111111000000000001111100011111100001110000000000111");
-	(game->map)[i++] = strdup("1111111000000000000001000000000000001111100011111100000000000000001111");
-	(game->map)[i++] = strdup("1111100000000111001001000000001111111111111111110001111110000000011111");
-	(game->map)[i++] = strdup("1111111100000100010001010010000000111111111111110001111110000000111111");
-	(game->map)[i++] = strdup("1111000000001000001000000000001111111111111111110001111110000001111111");
-	(game->map)[i++] = strdup("111111100000000000000P100100000000000000000000000001111110000011111111");
-	(game->map)[i++] = strdup("1111111111100000000000000000011111111111111111000001111110000111111111");
-	(game->map)[i++] = strdup("1111111111111110000111000111111111111111111111111111111110001111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111110011111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111110111111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
-	(game->map)[i++] = strdup("1111111111111111111111111111111111111111111111111111111111111111111111");
-	(game->map)[i++] = NULL;
-	//cast rays here
 	render_walls(game);
 	render_map(game);
 	mlx_key_hook(game->mlx_window, key_hook, game);
-	//debug
-	dprintf(2, "{main} after hooks call\n");
-	//end debug
 	mlx_loop(game->mlx);
 }
