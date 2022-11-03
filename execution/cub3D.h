@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 06:41:41 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 07:18:54 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,27 @@
 #define RX			1600
 #define	RY			1000
 
+//ray data struct
+typedef struct	 s_raydata {
+
+	double	inter_x;
+	double	inter_y;
+	double	d;
+	int		hit;
+}	t_raydata;
+
 typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_window;
-	int	map_rows;
-	int	map_columns;
-	double	resolution_x;
-	double	resolution_y;
-	int map_length;
-	int map_width;
+	int		map_rows;
+	int		map_columns;
+	int 	map_length;
+	int 	map_width;
 	char	**map;
 	double	player_x;
 	double	player_y;
 	double	angle;
+	t_raydata	rays[RX];
 	void	*img;
 	char	*addr;
 	void	*m_img;
@@ -51,13 +59,6 @@ typedef struct	s_data {
 	char	*ea;
 }				t_data;
 
-//ray data struct
-typedef struct	 s_raydata {
-
-	double	inter_x;
-	double	inter_y;
-	int		hit;
-}	t_raydata;
 
 void	render_map(t_data *game);
 void 	DDA(double x1, double y1, double x2, double y2, t_data *game, int color);

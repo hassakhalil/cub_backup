@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 04:13:59 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 07:18:19 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@ void	draw_map_rays(t_data *game)
 {
 	int	i;
 	double	ray_angle;
-	t_raydata	*ray = malloc(sizeof(t_raydata));
 
 	//FOV= Pi/3
 	ray_angle = game->angle - M_PI/6;
 	i = 0;
 	while (i < RX)
 	{
-		get_inter_point(game, ray, ray_angle);
-		//draw with dda
-		my_mlx_pixel_put(game, MSF*ray->inter_x, MSF*ray->inter_y, 0xFFFF00);
-		DDA(MSF*game->player_x, MSF*game->player_y, MSF*ray->inter_x, MSF*ray->inter_y, game, 0x800000);
+		my_mlx_pixel_put(game, MSF*game->rays[i].inter_x, MSF*game->rays[i].inter_y, 0xFFFF00);
+		DDA(MSF*game->player_x, MSF*game->player_y, MSF*game->rays[i].inter_x, MSF*game->rays[i].inter_y, game, 0x800000);
 		ray_angle += norm_angle(FOV / RX);
 		i++;
 	}
