@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 07:16:46 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 07:27:21 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	draw_wall(t_data *game)
 	double	beta;
 	//distance from player to projection plan
 	double	d2pp;
-	t_raydata	*ray = malloc(sizeof(t_raydata));
 
 	ray_angle = norm_angle(game->angle - M_PI/6);
 	i = 0;
@@ -28,15 +27,15 @@ void	draw_wall(t_data *game)
 	beta = norm_angle(ray_angle - game->angle);
 	while (i < RX)
 	{
-		get_inter_point(game, ray, ray_angle);
-		game->rays[i].d = hypot(game->player_x - ray->inter_x, game->player_y - ray->inter_y);
-		game->rays[i].inter_x = ray->inter_x;
-		game->rays[i].inter_y = ray->inter_y;
-		game->rays[i].hit = ray->hit;
+		get_inter_point(game, &(game->ray), ray_angle);
+		game->rays[i].d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y);
+		game->rays[i].inter_x = game->ray.inter_x;
+		game->rays[i].inter_y = game->ray.inter_y;
+		game->rays[i].hit = game->ray.hit;
 		wallheight = round(((RY*d2pp)/((game->rays[i]).d*cos(beta))));
 		if (wallheight < RY)
 		{
-			if (!ray->hit)
+			if (!game->ray.hit)
 				DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x808000);
 			else
 				DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x000000);
