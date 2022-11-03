@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 07:23:33 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 07:48:29 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define	CUBE		32
 #define	FOV			M_PI/3
 //minimap scale factor 
-#define	MSF			0.1
+#define	MSF			0.2
 #define RX			1600
 #define	RY			1000
 
