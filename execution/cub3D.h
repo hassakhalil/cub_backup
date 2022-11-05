@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/04 23:42:25 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 01:58:27 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	 s_raydata {
 	double	inter_y;
 	double	d;
 	int		hit;
+	int		v_or_h;
 }	t_raydata;
 
 typedef struct	s_data {

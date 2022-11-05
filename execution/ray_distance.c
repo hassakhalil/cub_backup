@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 01:53:09 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 02:00:54 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,13 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 		{
 			ray->inter_x = x_hor;
 			ray->inter_y = y_hor;
+			ray->v_or_h = 1;
 		}
 		else
 		{
 			ray->inter_x = x_ver;
 			ray->inter_y = y_ver;
+			ray->v_or_h = 0;
 		}
 		
 	}
@@ -117,13 +119,16 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 		{
 			ray->inter_x = x_ver;
 			ray->inter_y = y_ver;
+			ray->v_or_h = 0;
 		}
 		else
 		{
 			ray->inter_x = x_hor;
 			ray->inter_y = y_hor;
+			ray->v_or_h = 1;
 		}
 	}
+	//to be removed later
 	if (round(x_ver) == round(x_hor) && round(y_ver) == round(y_hor))
 		ray->hit = 1;
 	else
