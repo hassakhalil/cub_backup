@@ -6,20 +6,11 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:32:43 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/01 22:50:38 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/04 04:22:52 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-void	errors(int err)
-{
-	if (err == 1)
-	{
-		write(2, "Error in file format\n", 21);
-		exit(1);
-	}
-}
 
 int	there_is_error(t_parse *p)
 {

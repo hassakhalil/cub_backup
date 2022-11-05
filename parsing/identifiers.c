@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identifiers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:42:13 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 22:15:22 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/04 04:24:31 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	is_identifier(char *s)
 	i = 0;
 	if (s && s[i])
 	{
-		if (s[i] == 'N' && s[i + 1] == 'O')
+		if (s[i] == 'N' && (s[i + 1] == ' ' || s[i + 1] == 'O'))
 			return (1);
-		if (s[i] == 'S' && s[i + 1] == 'O')
+		if (s[i] == 'S' && (s[i + 1] == ' ' || s[i + 1] == 'O'))
 			return (2);
-		if (s[i] == 'W' && s[i + 1] == 'E')
+		if (s[i] == 'W' && (s[i + 1] == ' ' || s[i + 1] == 'E'))
 			return (3);
-		if (s[i] == 'E' && s[i + 1] == 'A')
+		if (s[i] == 'E' && (s[i + 1] == ' ' || s[i + 1] == 'A'))
 			return (4);
 		if (s[i] == 'F' && s[i + 1] == ' ')
 			return (5);
@@ -80,13 +80,6 @@ t_parse	*check_identifiers(char **tab, t_parse *p)
 	return (p);
 }
 
-char	**id_check(char **tab, t_parse *p)
-{
-	if (map_len(tab) != 6)
-		p->flag = 1;
-	return (tab);
-}
-
 char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 {
 	int	i;
@@ -94,7 +87,7 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 
 	i = 0;
 	j = 0;
-	while (tab && tab[i] && !is_map(tab[i]))
+	while (tab && tab[i] && !is_map1(tab[i]))
 	{
 		if (is_identifier(tab[i]) == 1 && p->no == 1)
 			to_fill[j++] = ft_strdup(tab[i]);
@@ -108,7 +101,7 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 			to_fill[j++] = ft_strdup(tab[i]);
 		else if (is_identifier(tab[i]) == 6 && p->ceil == 1)
 			to_fill[j++] = ft_strdup(tab[i]);
-		else if (!only_space(tab[i]))
+		else if (!only_space1(tab[i]))
 			to_fill[j++] = ft_strdup(tab[i]);
 		i++;
 	}

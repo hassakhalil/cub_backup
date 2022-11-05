@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 02:35:33 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/03 03:45:03 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,11 @@ int	key_hook(int keycode, t_data *game)
 	double	new_x;
 	double	new_y;
 
-	//debug
-	dprintf(2, "keycode == %d\n", keycode);
-	//end debug
-	if (keycode == 53)
-	{
-		//clean everything
-		exit(1);
-	}
-	else if (keycode == 123)
+	if (keycode == 123)
 		game->angle = norm_angle(game->angle - ROT_SPEED);
 	else if (keycode == 124)
 		game->angle = norm_angle(game->angle + ROT_SPEED);
-	else if (keycode == 126 || keycode == 13)
+	else if (keycode == 126)
 	{
 		new_x = game->player_x + MOV_SPEED*cos(game->angle);
 		new_y = game->player_y + MOV_SPEED*sin(game->angle);
@@ -39,30 +31,10 @@ int	key_hook(int keycode, t_data *game)
 			game->player_y = new_y;
 		}
 	}
-	else if (keycode == 125 || keycode == 1)
+	else if (keycode == 125)
 	{
 		new_x = game->player_x - MOV_SPEED*cos(game->angle);
 		new_y = game->player_y - MOV_SPEED*sin(game->angle);
-		if (wall(game, new_x, new_y, 1) != 1)
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-		}
-	}
-	else if (keycode == 0)
-	{
-		new_x = game->player_x + MOV_SPEED*cos(norm_angle(game->angle - M_PI_2));
-		new_y = game->player_y + MOV_SPEED*sin(norm_angle(game->angle - M_PI_2));
-		if (wall(game, new_x, new_y, 1) != 1)
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-		}
-	}
-	else if (keycode == 2)
-	{
-		new_x = game->player_x + MOV_SPEED*cos(norm_angle(game->angle + M_PI_2));
-		new_y = game->player_y + MOV_SPEED*sin(norm_angle(game->angle + M_PI_2));
 		if (wall(game, new_x, new_y, 1) != 1)
 		{
 			game->player_x = new_x;

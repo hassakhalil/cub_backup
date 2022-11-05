@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identifiers_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 22:36:50 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:36:25 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	get_len(char *str)
 
 int	check_textures(char *str, int i)
 {
-	// int		fd;
+	int		fd;
 	int		len;
 	char	*file;
 	char	*extension;
 
-	if (!is_blank(str[i]))
+	if (!is_blank(str[i]) && str[0] == 'W' && str[1] != ' ')
 		return (0);
 	while (str && is_blank(str[i]))
 		i++;
@@ -46,16 +46,15 @@ int	check_textures(char *str, int i)
 		return (-1);
 	len = get_len(str + i);
 	file = ft_substr(str + i, 0, len);
-	// fd = open(file, O_RDONLY);
-	// if (fd == -1)
-	// {
-		
-	// 	free(file);
-	// 	close(fd);
-	// 	return (0);
-	// }
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+	{
+		free(file);
+		close(fd);
+		return (0);
+	}
 	free(file);
-	// close(fd);
+	close(fd);
 	return (1);
 }
 

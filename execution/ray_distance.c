@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 03:48:08 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 23:01:54 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 			ray->inter_y = y_ver;
 			ray->v_or_h = 0;
 		}
-		
 	}
 	else
 	{
@@ -133,22 +132,12 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 		ray->hit = 1;
 	else
 		ray->hit = 0;
-	if (ray_ang > 0 && ray_ang < M_PI)
-	{
-		if (ray->v_or_h == 0)
-			ray->wall = 'S';
-		else if (ray_ang < M_PI_2)
-			ray->wall = 'E';
-		else
-			ray->wall = 'W';
-	}
-	else
-	{
-		if (ray->v_or_h == 0)
-			ray->wall = 'N';
-		else if (ray_ang > 1.5*M_PI)
-			ray->wall = 'E';
-		else
-			ray->wall = 'W';
-	}
+	if (ray_ang > 0 && ray_ang < M_PI && ray->v_or_h == 0)
+		ray->wall = 'S';
+	else if (!(ray_ang > 0 && ray_ang < M_PI) && ray->v_or_h == 0)
+		ray->wall = 'N';
+	else if (ray->v_or_h && (ray_ang < M_PI_2 || ray_ang > 1.5*M_PI))
+		ray->wall = 'E';
+	else if (ray->v_or_h && !(ray_ang < M_PI_2 || ray_ang > 1.5*M_PI))
+		ray->wall = 'W';
 }

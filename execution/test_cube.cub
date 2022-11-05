@@ -1,12 +1,15 @@
 
-WE  ../texture1.xpm                
-NO ../texture1.xpm       
-EA  ../texture1.xpm      
-SO  ../texture1.xpm      
 
-C   41   ,    8  ,   00      
-F  55    ,   40 , 14       
+WE ../parsing/texture1.xpm                 
 
+EA   ../parsing/t e x t u r e.xpm     
+
+SO    ../parsing/t e x t u r e.xpm    
+NO   ../parsing/t e x t u r e.xpm       
+
+C  142  ,   98  , 100     
+F 255   ,  140  , 0     
+                     
 11111111                                                1             
 10000001                                                11            
 11111111                                                101           
@@ -35,5 +38,4 @@ F  55    ,   40 , 14
              11111111111111                             1001          
                                                         101           
                                                         11            
-                                                        1             
-                                                        
+                                                        1   

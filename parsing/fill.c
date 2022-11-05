@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 23:05:00 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/04 04:25:32 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ int	get_color(char *str)
 	if (is_blank(str[i]))
 		while (is_blank(str[i]))
 			i++;
-	red = atoi(str + i);
+	red = ft_atoi(str + i);
 	while (is_digit(str[i]) || is_blank(str[i]))
 		i++;
 	i++;
-	green = atoi(str + i);
+	green = ft_atoi(str + i);
 	while (is_digit(str[i]) || is_blank(str[i]))
 		i++;
 	i++;
-	blue = atoi(str + i);
+	blue = ft_atoi(str + i);
 	color = (red << 16) + (green << 8) + blue;
 	return (color);
 }
@@ -65,6 +65,30 @@ int	get_color(char *str)
 // 		printf("map[%d] = %s\n", k, info->map[k]);
 // }
 
+char	**rec_map(char **map, int y, int x)
+{
+	int		i;
+	int		j;
+	char	**new_map;
+
+	j = 0;
+	i = 0;
+	new_map = malloc(sizeof(char *) * (y + 1));
+	while (y--)
+		new_map[j++] = malloc(sizeof(char) * x + 1);
+	new_map[j] = 0;
+	i = 0;
+	j = 0;
+	while (map[i])
+	{
+		new_map[j] = fill_spaces(map[i], new_map[j], x);
+		i++;
+		j++;
+	}
+	free_tab(map);
+	return (new_map);
+}
+
 t_info	*fill_more_infos(char **tab, t_info *info)
 {
 	int		*pos;
@@ -74,8 +98,9 @@ t_info	*fill_more_infos(char **tab, t_info *info)
 	info->y = pos[0];
 	info->x = pos[1];
 	info->map_y = map_len(info->map);
-	info->map_x = map_y(info->map);
+	info->map_x = map_x(info->map);
 	info->dir = get_player(info->map);
+	info->new_map = rec_map(info->map, info->map_y, info->map_x);
 	free(pos);
 	return (info);
 }

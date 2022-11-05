@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   to_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 20:26:27 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 22:02:25 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/04 04:14:41 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	map_y(char **map)
+int	map_x(char **map)
 {
 	int		i;
 	size_t	y;
@@ -55,6 +55,23 @@ int	is_player(char p)
 	return (0);
 }
 
+int	check_all_sides(char **map, int i, int j)
+{
+	if (i > 0 && (map[i][j] == '0' || is_player(map[i][j]))
+		&& (map[i][j + 1] == ' ' || map[i][j - 1] == ' '))
+		return (0);
+	else if (i > 0 && is_map(map[i + 1])
+		&& (map[i][j] == '0' || is_player(map[i][j]))
+		&& (ft_strlen(map[i - 1]) < j || ft_strlen(map[i + 1]) < j))
+		return (0);
+	else if (i > 0 && is_map(map[i + 1])
+		&& (map[i][j] == '0' || is_player(map[i][j]))
+		&& (map[i - 1][j] == ' ' || map[i + 1][j] == ' '
+		|| map[i - 1][j] == '\0' || map[i + 1][j] == '\0'))
+		return (0);
+	return (1);
+}
+
 int	internal_check(char **map)
 {
 	int	i;
@@ -66,12 +83,9 @@ int	internal_check(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (i > 0 && (map[i][j] == '0' || is_player(map[i][j])) && (map[i][j + 1] == ' '
-				|| map[i][j - 1] == ' '))
+			if (!check_all_sides(map, i, j))
 				return (0);
-			else if (i > 0 && is_map(map[i + 1]) && (map[i][j] == '0' || is_player(map[i][j]))
-				&& (map[i - 1][j] == ' ' || map[i + 1][j] == ' '
-				|| map[i - 1][j] == '\0' || map[i + 1][j] == '\0'))
+			else if (!check_all_sides(map, i, j))
 				return (0);
 			j++;
 		}

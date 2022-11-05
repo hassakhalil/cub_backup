@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:52:21 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 22:56:22 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/04 00:57:40 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ int	invalid_char(char *s)
 			&& s[i] != ' ' && s[i] != 'N'
 			&& s[i] != 'E' && s[i] != 'S'
 			&& s[i] != 'W')
-		{
-			printf("char = |%c|\n", s[i]);
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -53,7 +50,9 @@ int	is_invalid(char c)
 	if (c != '\0' && c != '1' && c != '0'
 		&& c != ' ' && c != 'N' && c != 'S'
 		&& c != 'W' && c != 'E')
+	{
 		return (1);
+	}
 	return (0);
 }
 
@@ -76,6 +75,7 @@ int	*get_player_position(char **str)
 		}
 		tab[0]++;
 	}
+	exit(0);
 	return (NULL);
 }
 

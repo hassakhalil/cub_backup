@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 03:26:13 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 23:05:53 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct	s_data {
 	double	angle;
 	t_raydata	ray;
 	t_raydata	rays[RX];
+	int		floor;
+	int		ceilling;
 	void	*img;
 	char	*addr;
 	void	*m_img;

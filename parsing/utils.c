@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 22:21:27 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/04 04:22:07 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int	check_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
 		return (-1);
-	}
 	str = strrchr(file, '.');
 	if (str == NULL || strcmp(str, ".cub") != 0 || !strcmp(file, ".cub"))
 		return (-1);
@@ -59,7 +57,7 @@ int	is_map(char *s)
 		while (is_blank(s[i]))
 			i++;
 	}
-	if (s[i] == '1' || s[i] == '0')
+	if (s[i] == '1' || s[i] == '0' || !s[i])
 		return (1);
 	return (0);
 }
