@@ -6,13 +6,11 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/03 06:27:29 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/04 23:43:18 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-//use get_inter one time
 
 int main(int ac, char **av)
 {
