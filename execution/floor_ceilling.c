@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 22:58:09 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 22:58:29 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 23:40:38 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	floor_ceilling(t_data *game)
 	while (i < RY)
 	{
 		if (i < RY/2)
-			DDA(0, i, RX, i, game, 0xC0C0C0);
+			DDA(0, i, RX, i, game, game->ceilling);
 		else
-			DDA(0, i, RX, i, game, 0x808080);
+			DDA(0, i, RX, i, game, game->floor);
 		i++;
 	}
 }
