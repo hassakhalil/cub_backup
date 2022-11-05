@@ -6,11 +6,19 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/04 23:43:18 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 02:35:58 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	render_next_frame(void *structure)
+{
+	t_data *game = (t_data *)structure;
+
+	mlx_key_hook(game->mlx_window, key_hook, game);
+	return (0);
+}
 
 int main(int ac, char **av)
 {
@@ -42,8 +50,10 @@ int main(int ac, char **av)
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, RX, RY, "cub3d");
 	
+	
 	render_walls(game);
 	render_map(game);
-	mlx_key_hook(game->mlx_window, key_hook, game);
+	//mlx_key_hook(game->mlx_window, key_hook, game);
+	mlx_loop_hook(game->mlx, render_next_frame, (void *)game);
 	mlx_loop(game->mlx);
 }

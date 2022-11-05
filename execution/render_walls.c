@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 02:04:24 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/05 03:41:45 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,16 @@ void	draw_wall(t_data *game)
 		if (wallheight < RY)
 		{
 			if (!game->ray.hit)
-				DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x808000);
+			{
+				if (game->ray.wall == 'N')
+					DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x808000);
+				else if (game->ray.wall == 'S')
+					DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x3649C2);
+				else if (game->ray.wall == 'E')
+					DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x8ED3F1);
+				else if (game->ray.wall == 'W')
+					DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0xF1D38E);
+			}
 			else
 				DDA(i, RY/2 - wallheight/2, i, RY/2 + wallheight/2, game, 0x000000);
 		}
