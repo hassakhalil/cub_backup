@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 08:13:00 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 08:50:21 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int main(int ac, char **av)
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);
 	mlx_hook(game->mlx_window, 17, 0, ft_exit, game);
 	mlx_hook(game->mlx_window, 2, 0, key_hook, game);
+	mlx_mouse_hook(game->mlx_window, mouse_hook, game);
 	mlx_loop(game->mlx);
 }
