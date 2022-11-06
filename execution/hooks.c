@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 04:41:10 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 08:13:25 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int	key_hook(int keycode, t_data *game)
 	mlx_destroy_image(game->mlx, game->img);
 	render_walls(game);
 	render_map(game);
+	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);
 	return (0);
 }

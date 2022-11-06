@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 05:44:58 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/06 08:13:00 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ int main(int ac, char **av)
 	game->floor = info->floor;
 	game->ceilling = info->ceil;
 	game->angle = ft_angle(info->dir);
-	game->mlx = info->mlx;
+	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, RX, RY, "cub3d");
 	
 	render_walls(game);
 	render_map(game);
+	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);
 	mlx_hook(game->mlx_window, 17, 0, ft_exit, game);
 	mlx_hook(game->mlx_window, 2, 0, key_hook, game);
 	mlx_loop(game->mlx);

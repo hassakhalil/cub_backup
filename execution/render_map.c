@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 01:17:09 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 08:12:25 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,4 @@ void	render_map(t_data *game)
 	}
 	//draw_map_rays(game);
 	//DDA(MSF*game->player_x, MSF*game->player_y, MSF*(game->player_x + 200*cos(game->angle)), MSF*(game->player_y +200*sin(game->angle)), game, 0xFF0000);
-	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);
 }
