@@ -1,11 +1,11 @@
 
 
-WE ../parsing/xpm/w.xpm                 
+WE ../parsing/xpm/ll.xpm                 
 
-EA   ../parsing/xpm/e.xpm     
+EA   ../parsing/xpm/ll.xpm     
 
-SO    ../parsing/xpm/s.xpm    
-NO   ../parsing/xpm/n.xpm       
+SO    ../parsing/xpm/ll.xpm    
+NO   ../parsing/xpm/ll.xpm       
 
 C  142  ,   98  , 100     
 F 255   ,  140  , 0     
