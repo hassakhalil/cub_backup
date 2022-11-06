@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 23:05:53 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 03:19:40 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include "../parsing/parse.h"
 
-#define MOV_SPEED	8
+#define MOV_SPEED	4
 #define ROT_SPEED	MOV_SPEED*M_PI/180
 #define	CUBE		32
 #define	FOV			M_PI/3

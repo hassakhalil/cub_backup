@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 23:43:27 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 03:31:50 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	key_hook(int keycode, t_data *game)
 	double	new_x;
 	double	new_y;
 
-	//debug
-	dprintf(2, "keycode == %d\n", keycode);
-	//end debug
 	if (keycode == 53)
 	{
 		//clean everything

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 23:06:29 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 03:29:39 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ int main(int ac, char **av)
 	
 	render_walls(game);
 	render_map(game);
-	mlx_key_hook(game->mlx_window, key_hook, game);
+	mlx_hook(game->mlx_window, 2, 0, key_hook, game);
 	mlx_loop(game->mlx);
 }
