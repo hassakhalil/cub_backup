@@ -6,11 +6,19 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 03:31:50 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 04:41:10 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	ft_exit(t_data *game)
+{
+	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_window(game->mlx, game->mlx_window);
+	//clean everything
+	exit(1);
+}
 
 int	key_hook(int keycode, t_data *game)
 {
@@ -19,6 +27,8 @@ int	key_hook(int keycode, t_data *game)
 
 	if (keycode == 53)
 	{
+		mlx_destroy_image(game->mlx, game->img);
+		mlx_destroy_window(game->mlx, game->mlx_window);
 		//clean everything
 		exit(1);
 	}
