@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 03:29:39 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/06 04:23:41 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int main(int ac, char **av)
 		return (0);
 	}
 	info = fill_infos(tab);
+	free_tab(tab);
 	// system("leaks cub3D");
 	// exit(0);
 	//execution
