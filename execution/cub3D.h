@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/07 07:10:19 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/07 07:37:59 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_texture
 	int		t_height;
 	void	*t_image;
 	char	*t_addr;
+	int		bpp;
+	int		ll;
+	int		end;
 } t_texture;
 
 
@@ -61,10 +64,7 @@ typedef struct	s_data {
 	double	angle;
 	t_raydata	ray;
 	t_raydata	rays[RX];
-	t_texture	n;
-	t_texture	s;
-	t_texture	w;
-	t_texture	e;
+	t_texture	textures[4];
 	int		floor;
 	int		ceilling;
 	void	*img;
@@ -96,4 +96,5 @@ double	ft_angle(char c);
 void	floor_ceilling(t_data *game);
 int	ft_exit(t_data *game);
 int	mouse_hook(int button, int x, int y,t_data *game);
+void	read_texture(t_data *game);
 #endif
