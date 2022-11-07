@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 08:50:21 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/07 07:05:52 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ int main(int ac, char **av)
 	game->angle = ft_angle(info->dir);
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, RX, RY, "cub3d");
-	
+	//debug
+	convert_to_image(game);
+	//end debug
 	render_walls(game);
 	render_map(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);

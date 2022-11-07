@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/06 09:05:59 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/07 07:10:19 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,24 @@
 
 #define MOV_SPEED	4
 #define ROT_SPEED	MOV_SPEED*M_PI/180
-#define	CUBE		32
+#define	CUBE		64
 #define	FOV			M_PI/3
 //minimap scale factor 
-#define	MSF			0.2
+#define	MSF			0.1
 #define RX			1600
 #define	RY			1000
+
+//texture struct
+
+typedef struct s_texture
+{
+	char *t_file;
+	int		t_width;
+	int		t_height;
+	void	*t_image;
+	char	*t_addr;
+} t_texture;
+
 
 //ray data struct
 typedef struct	 s_raydata {
@@ -49,6 +61,10 @@ typedef struct	s_data {
 	double	angle;
 	t_raydata	ray;
 	t_raydata	rays[RX];
+	t_texture	n;
+	t_texture	s;
+	t_texture	w;
+	t_texture	e;
 	int		floor;
 	int		ceilling;
 	void	*img;
