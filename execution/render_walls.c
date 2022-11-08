@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/08 23:08:38 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/08 23:11:54 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ void	draw_wall(t_data *game)
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
-				// if (fabs(game->rays[i].inter_x - CUBE*round(game->rays[i].inter_x/CUBE)) < fabs(game->rays[i].inter_y - CUBE*round(game->rays[i].inter_y/CUBE)))
-				// 	offset_x = game->rays[i].inter_y - CUBE*floor(game->rays[i].inter_y/CUBE);
-				// else
-				// 	offset_x =  CUBE*ceil(game->rays[i].inter_x/CUBE) - game->rays[i].inter_x; 
 				y = start;
 				while (y <  end)
 				{
@@ -75,10 +71,6 @@ void	draw_wall(t_data *game)
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
-				// if (fabs(game->rays[i].inter_x - CUBE*round(game->rays[i].inter_x/CUBE)) < fabs(game->rays[i].inter_y - CUBE*round(game->rays[i].inter_y/CUBE)))
-				// 	offset_x = game->rays[i].inter_y - CUBE*floor(game->rays[i].inter_y/CUBE);
-				// else
-				// 	offset_x =  CUBE*ceil(game->rays[i].inter_x/CUBE) - game->rays[i].inter_x; 
 				y = start;
 				while (y <  end)
 				{
@@ -94,10 +86,6 @@ void	draw_wall(t_data *game)
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
-				// if (fabs(game->rays[i].inter_x - CUBE*round(game->rays[i].inter_x/CUBE)) < fabs(game->rays[i].inter_y - CUBE*round(game->rays[i].inter_y/CUBE)))
-				// 	offset_x = game->rays[i].inter_y - CUBE*floor(game->rays[i].inter_y/CUBE);
-				// else
-				// 	offset_x =  CUBE*ceil(game->rays[i].inter_x/CUBE) - game->rays[i].inter_x; 
 				y = start;
 				while (y <  end)
 				{
@@ -113,10 +101,6 @@ void	draw_wall(t_data *game)
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
-				// if (fabs(game->rays[i].inter_x - CUBE*round(game->rays[i].inter_x/CUBE)) < fabs(game->rays[i].inter_y - CUBE*round(game->rays[i].inter_y/CUBE)))
-				// 	offset_x = game->rays[i].inter_y - CUBE*floor(game->rays[i].inter_y/CUBE);
-				// else
-				// 	offset_x = CUBE*ceil(game->rays[i].inter_x/CUBE) - game->rays[i].inter_x;
 				y = start;
 				while (y <  end)
 				{
