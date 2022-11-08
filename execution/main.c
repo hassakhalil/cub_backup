@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/07 07:37:31 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/08 03:50:31 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ int main(int ac, char **av)
 	game->angle = ft_angle(info->dir);
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, RX, RY, "cub3d");
+	//n
 	game->textures[0].t_file = info->no;
+	//s
 	game->textures[1].t_file = info->so;
+	// w
 	game->textures[2].t_file = info->we;
+	//e
 	game->textures[3].t_file = info->ea;
 
 	//debug

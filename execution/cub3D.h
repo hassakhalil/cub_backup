@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/07 07:37:59 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/08 22:48:35 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include "../parsing/parse.h"
 
-#define MOV_SPEED	4
+#define MOV_SPEED	10
 #define ROT_SPEED	MOV_SPEED*M_PI/180
 #define	CUBE		64
 #define	FOV			M_PI/3
@@ -29,7 +29,7 @@
 
 typedef struct s_texture
 {
-	char *t_file;
+	char 	*t_file;
 	int		t_width;
 	int		t_height;
 	void	*t_image;
@@ -97,4 +97,5 @@ void	floor_ceilling(t_data *game);
 int	ft_exit(t_data *game);
 int	mouse_hook(int button, int x, int y,t_data *game);
 void	read_texture(t_data *game);
+unsigned int	get_pixel(t_texture *data, int x, int y);
 #endif
