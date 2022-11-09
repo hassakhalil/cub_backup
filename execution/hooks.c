@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 02:42:12 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 03:44:39 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,13 @@ int	mouse_hook(int button, int x, int y, t_data *game)
 	return (0);
 }
 
-
-int	ft_exit(t_data *game)
-{
-	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_window(game->mlx, game->mlx_window);
-	//clean everything
-	exit(1);
-}
-
 int	key_hook(int keycode, t_data *game)
 {
 	double	new_x;
 	double	new_y;
 
 	if (keycode == 53)
-		ft_exit(game);
+		ft_exit(game, 1);
 	else if (keycode == 123)
 		game->angle = norm_angle(game->angle - ROT_SPEED);
 	else if (keycode == 124)

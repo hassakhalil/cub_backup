@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 01:37:00 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 03:46:12 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,9 @@ typedef struct s_data {
 	int			ceilling;
 	void		*img;
 	char		*addr;
-	void		*m_img;
-	char		*m_addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
 }				t_data;
 
 void			render_map(t_data *game);
@@ -89,8 +83,8 @@ void			render_walls(t_data *game);
 double			norm_angle(double angle);
 double			ft_angle(char c);
 void			floor_ceilling(t_data *game);
-int				ft_exit(t_data *game);
 int				mouse_hook(int button, int x, int y, t_data *game);
 void			read_texture(t_data *game);
 unsigned int	get_pixel(t_texture *data, int x, int y);
+int				ft_exit(t_data *game, int flag);
 #endif
