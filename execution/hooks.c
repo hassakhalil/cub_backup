@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/08 03:50:08 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 02:42:12 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,7 @@ int	key_hook(int keycode, t_data *game)
 	double	new_y;
 
 	if (keycode == 53)
-	{
-		mlx_destroy_image(game->mlx, game->img);
-		mlx_destroy_window(game->mlx, game->mlx_window);
-		//clean everything
-		exit(1);
-	}
+		ft_exit(game);
 	else if (keycode == 123)
 		game->angle = norm_angle(game->angle - ROT_SPEED);
 	else if (keycode == 124)
