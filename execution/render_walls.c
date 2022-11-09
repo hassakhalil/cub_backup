@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 01:02:17 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 05:08:07 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_wall(t_data *game)
 		}
 			if (game->ray.wall == 'N')
 			{
-				if (game->ray.v_or_h == 0)
+				if (game->ray.v_or_h == 'v')
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
@@ -66,7 +66,7 @@ void	draw_wall(t_data *game)
 			}
 			else if (game->ray.wall == 'S')
 			{
-				if (game->ray.v_or_h == 0)
+				if (game->ray.v_or_h == 'v')
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
@@ -81,7 +81,7 @@ void	draw_wall(t_data *game)
 			}
 			else if (game->ray.wall == 'E')
 			{
-				if (game->ray.v_or_h == 0)
+				if (game->ray.v_or_h == 'v')
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
@@ -96,7 +96,7 @@ void	draw_wall(t_data *game)
 			}
 			else if (game->ray.wall == 'W')
 			{
-				if (game->ray.v_or_h == 0)
+				if (game->ray.v_or_h == 'v')
 					offset_x = (int)game->rays[i].inter_y % CUBE;
 				else
 					offset_x = (int)game->rays[i].inter_x % CUBE;
