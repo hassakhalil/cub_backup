@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 01:35:26 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 02:00:25 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main(int ac, char **av)
 	t_info	*info;
 	int		fd;
 
-	//parsing
 	fd = 0;
 	(void)ac;
 	tab = init_file(av[1], fd);
@@ -32,9 +31,6 @@ int main(int ac, char **av)
 	}
 	info = fill_infos(tab);
 	free_tab(tab);
-	// system("leaks cub3D");
-	// exit(0);
-	//execution
 	t_data *game = malloc(sizeof(t_data));
 	game->map = info->new_map;
 	game->map_rows = info->map_y;
@@ -48,19 +44,12 @@ int main(int ac, char **av)
 	game->angle = ft_angle(info->dir);
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, RX, RY, "cub3d");
-	//n
-	game->textures[0].t_file = ft_strdup(info->no);
-	//s
-	game->textures[1].t_file = ft_strdup(info->so);
-	// w
-	game->textures[2].t_file = ft_strdup(info->we);
-	//e
-	game->textures[3].t_file = ft_strdup(info->ea);
-	//free info struct here
-
-	//debug
+	game->textures[0].t_file = info->no;
+	game->textures[1].t_file = info->so;
+	game->textures[2].t_file = info->we;
+	game->textures[3].t_file = info->ea;
+	free_struct(info);
 	read_texture(game);
-	//end debug
 	render_walls(game);
 	render_map(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);

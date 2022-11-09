@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/04 04:25:32 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:45:15 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,6 @@ int	get_color(char *str)
 	color = (red << 16) + (green << 8) + blue;
 	return (color);
 }
-
-// void	print_struct(t_info *info)
-// {
-// 	printf("no: %s\n", info->no);
-// 	printf("so: %s\n", info->so);
-// 	printf("we: %s\n", info->we);
-// 	printf("ea: %s\n", info->ea);
-// 	printf("F: %d\n", info->floor);
-// 	printf("C: %d\n", info->ceil);
-// 	printf("x = %d | y = %d\n", info->x, info->y);
-// 	for (int k = 0; info->map[k]; k++)
-// 		printf("map[%d] = %s\n", k, info->map[k]);
-// }
 
 char	**rec_map(char **map, int y, int x)
 {

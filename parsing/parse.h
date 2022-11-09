@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/04 04:43:49 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:46:24 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		map_x(char **map);
 char	*fill_spaces(char *map_x, char *to_fill, int size);
 char	**id_check(char **tab, t_parse *p);
 char	**f_malloc(void);
+void	free_struct(t_info *info);
 
 // parse
 

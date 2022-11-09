@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 04:32:32 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/04 04:42:54 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:51:33 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ void	thecheck(int i, int *pos, char **map, t_parse *p)
 		p->wg_char = 1;
 	if (check_position(map[i]))
 		*pos += check_position(map[i]);
+}
+
+void	free_struct(t_info *info)
+{
+	if (info)
+		free(info);
 }

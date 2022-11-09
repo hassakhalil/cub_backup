@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 23:58:46 by hkhalil           #+#    #+#              #
-#    Updated: 2022/11/09 01:36:26 by hkhalil          ###   ########.fr        #
+#    Updated: 2022/11/09 01:49:43 by fstitou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = main.c hooks.c map_collision.c render_map.c render_walls.c floor_ceilling.
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -O3 -fsanitize=address -g3 
+CFLAGS = -Wall -Wextra -Werror -O3  -g3 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
