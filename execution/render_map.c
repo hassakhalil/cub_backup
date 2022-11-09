@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 04:46:39 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 21:14:25 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	draw_map(t_data *game, int i, int j)
 			if ((game->map)[i][j] == '1')
 				my_mlx_pixel_put(game, MSF * (CUBE * j + l),
 					MSF * (CUBE * i + k), 0x000000);
-			if ((pow(((CUBE * i + k) - (game->player_y)), 2)
-					+ pow(CUBE * j + l - (game->player_x), 2)) <= 200)
-				my_mlx_pixel_put(game, MSF * (CUBE * j + l),
-					MSF * (CUBE * i + k), 0xFF0000);
+			//if ((pow(((CUBE * i + k) - (game->player_y)), 2)
+			//		+ pow(CUBE * j + l - (game->player_x), 2)) <= 200)
+			//	my_mlx_pixel_put(game, MSF * (CUBE * j + l),
+			//		MSF * (CUBE * i + k), 0xFF0000);
 			l++;
 		}
 		k++;

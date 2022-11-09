@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 05:22:22 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:38:32 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <math.h>
 # include "../parsing/parse.h"
 
-# define MOV_SPEED	2
+# define MOV_SPEED	10
 # define ROT_SPEED	MOV_SPEED*M_PI/180
 # define CUBE		64
 # define FOV		M_PI/3
@@ -24,6 +24,15 @@
 # define MSF		0.1
 # define RX			1600
 # define RY			1000
+
+//pre calculated values
+typedef struct s_precalculated
+{
+	double	d2pp;
+	double	delta_ang;
+	int		RX_2;
+	int		RY_2;
+}	t_precalculated;
 
 //texture struct
 
@@ -49,26 +58,26 @@ typedef struct s_raydata {
 }	t_raydata;
 
 typedef struct s_data {
-	void		*mlx;
-	void		*mlx_window;
-	int			map_rows;
-	int			map_columns;
-	int			map_length;
-	int			map_width;
-	char		**map;
-	double		player_x;
-	double		player_y;
-	double		angle;
-	t_raydata	ray;
-	t_raydata	rays[RX];
-	t_texture	textures[4];
-	int			floor;
-	int			ceilling;
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
+	void			*mlx;
+	void			*mlx_window;
+	int				map_rows;
+	int				map_columns;
+	int				map_length;
+	int				map_width;
+	char			**map;
+	double			player_x;
+	double			player_y;
+	double			angle;
+	t_raydata		rays[RX];
+	t_texture		textures[4];
+	t_precalculated value;
+	int				floor;
+	int				ceilling;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 }				t_data;
 
 void			render_map(t_data *game);
