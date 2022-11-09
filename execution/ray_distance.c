@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/05 23:38:13 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:02:47 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,6 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 			ray->v_or_h = 1;
 		}
 	}
-	//to be removed later
-	if (round(x_ver) == round(x_hor) && round(y_ver) == round(y_hor))
-		ray->hit = 1;
-	else
-		ray->hit = 0;
 	if (ray_ang > 0 && ray_ang < M_PI && ray->v_or_h == 1)
 		ray->wall = 'S';
 	else if (ray->v_or_h == 1)

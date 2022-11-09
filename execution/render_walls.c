@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/08 23:11:54 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:02:17 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	draw_wall(t_data *game)
 		game->rays[i].d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y);
 		game->rays[i].inter_x = game->ray.inter_x;
 		game->rays[i].inter_y = game->ray.inter_y;
-		game->rays[i].hit = game->ray.hit;
 		game->rays[i].v_or_h = game->ray.v_or_h;
 		wallheight = round(((RY*d2pp)/((game->rays[i]).d*cos(beta))));
 		if (wallheight < RY)
