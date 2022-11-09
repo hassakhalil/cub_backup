@@ -6,7 +6,7 @@
 #    By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 23:58:46 by hkhalil           #+#    #+#              #
-#    Updated: 2022/11/09 05:00:10 by hkhalil          ###   ########.fr        #
+#    Updated: 2022/11/09 05:21:10 by hkhalil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = mouse.c clean.c main.c hooks.c map_collision.c render_map.c render_walls.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -O3  -g3  #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-O3  -g3  #-fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
