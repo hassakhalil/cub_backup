@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 07:15:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 04:08:36 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/09 04:47:00 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_text(t_data *game, int i)
 		{
 			mlx_destroy_image(game->mlx, game->textures[i].t_image);
 			i--;
-		} 
+		}
 		ft_exit(game, 0);
 	}
 	game->textures[i].t_addr = mlx_get_data_addr(game->textures[i].t_image,
