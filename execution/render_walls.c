@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 01:58:15 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 02:44:12 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	draw_wall(t_data *game)
 	int	y;
 	int	offset_x;
 	int	offset_y;
+	double	d;
 	int	start;
 	int	end;
 	double	ray_angle;
@@ -27,12 +28,12 @@ void	draw_wall(t_data *game)
 
 	ray_angle = norm_angle(game->angle - M_PI/6);
 	i = 0;
-	beta = norm_angle(game->angle - ray_angle);
+	beta = game->angle - ray_angle;
 	while (i < RX)
 	{
 		get_inter_point(game, &(game->ray), ray_angle);
-		game->ray.d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y)*cos(beta);
-		wallheight = round(CUBE*(game->value.d2pp/game->ray.d));
+		d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y)*cos(beta);
+		wallheight = round(CUBE*(game->value.d2pp/d));
 		if (wallheight < RY)
 		{
 			start = game->value.RY_2 - wallheight/2;
