@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 03:11:09 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 09:53:01 by hkhalil          ###   ########.fr       */
+/*   Created: 2022/11/09 04:59:16 by hkhalil           #+#    #+#             */
+/*   Updated: 2022/11/10 09:41:19 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-void	free_game(t_data *game, int flag)
+int	mouse_hook(int button, int x, int y, t_data *game)
 {
-	int	i;
-
-	i = 0;
-	while (i < 4)
+	x = 0;
+	y = 0;
+	if (button == 1)
 	{
-		free(game->textures[i].t_file);
-		if (flag)
-			mlx_destroy_image(game->mlx, game->textures[i].t_image);
-		i++;
+		game->angle = norm_angle(game->angle - ROT_SPEED);
+		update_bonus(game);
 	}
-	free_tab(game->map);
-	mlx_destroy_window(game->mlx, game->mlx_window);
-	if (flag)
+	else if (button == 2)
 	{
-		mlx_destroy_image(game->mlx, game->img);
-		free(game);
+		game->angle = norm_angle(game->angle + ROT_SPEED);
+		update_bonus(game);
 	}
-}
-
-int	ft_exit(t_data *game, int flag)
-{
-	free_game(game, flag);
-	exit(1);
+	return (0);
 }

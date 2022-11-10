@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.c                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 04:59:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 01:24:19 by hkhalil          ###   ########.fr       */
+/*   Created: 2022/11/10 09:21:05 by hkhalil           #+#    #+#             */
+/*   Updated: 2022/11/10 09:45:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-int	mouse_hook(int button, int x, int y, t_data *game)
-{
-	x = 0;
-	y = 0;
-	if (button == 1)
-	{
-		game->angle = norm_angle(game->angle - ROT_SPEED);
-		apdate(game);
-	}
-	else if (button == 2)
-	{
-		game->angle = norm_angle(game->angle + ROT_SPEED);
-		apdate(game);
-	}
-	return (0);
-}
+# include "cub3D.h"
+
+# define MSF		0.1
+
+int		mouse_hook(int button, int x, int y, t_data *game);
+void	update_bonus(t_data *game);
+int		key_hook_bonus(int keycode, t_data *game);
+void	render_map(t_data *game);
+void	game_init_bonus(t_data *game, t_info *info);
+#endif

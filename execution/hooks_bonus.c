@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 09:02:28 by hkhalil          ###   ########.fr       */
+/*   Created: 2022/11/10 09:12:50 by hkhalil           #+#    #+#             */
+/*   Updated: 2022/11/10 09:44:51 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-void	move_for(t_data *game)
+void	move_for_bonus(t_data *game)
 {
 	double	new_x;
 	double	new_y;
@@ -23,11 +23,11 @@ void	move_for(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		update(game);
+		update_bonus(game);
 	}
 }
 
-void	move_back(t_data *game)
+void	move_back_bonus(t_data *game)
 {
 	double	new_x;
 	double	new_y;
@@ -38,11 +38,11 @@ void	move_back(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		update(game);
+		update_bonus(game);
 	}
 }
 
-void	move_left(t_data *game)
+void	move_left_bonus(t_data *game)
 {
 	double	new_x;
 	double	new_y;
@@ -53,11 +53,11 @@ void	move_left(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		update(game);
+		update_bonus(game);
 	}
 }
 
-void	move_right(t_data *game)
+void	move_right_bonus(t_data *game)
 {
 	double	new_x;
 	double	new_y;
@@ -68,31 +68,31 @@ void	move_right(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		update(game);
+		update_bonus(game);
 	}
 }
 
-int	key_hook(int keycode, t_data *game)
+int	key_hook_bonus(int keycode, t_data *game)
 {
 	if (keycode == 53)
 		ft_exit(game, 1);
 	else if (keycode == 123)
 	{
 		game->angle = norm_angle(game->angle - ROT_SPEED);
-		update(game);
+		update_bonus(game);
 	}
 	else if (keycode == 124)
 	{
 		game->angle = norm_angle(game->angle + ROT_SPEED);
-		update(game);
+		update_bonus(game);
 	}
 	else if (keycode == 126 || keycode == 13)
-		move_for(game);
+		move_for_bonus(game);
 	else if (keycode == 125 || keycode == 1)
-		move_back(game);
+		move_back_bonus(game);
 	else if (keycode == 0)
-		move_left(game);
+		move_left_bonus(game);
 	else if (keycode == 2)
-		move_right(game);
+		move_right_bonus(game);
 	return (0);
 }
