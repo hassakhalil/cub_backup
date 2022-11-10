@@ -6,18 +6,11 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 04:32:49 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 04:36:00 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	precalculate(t_data *game)
-{
-	game->value.d2pp = (RX / 2) / tan(M_PI / 6);
-	game->value.RX_2 = RX / 2;
-	game->value.RY_2 = RY / 2;
-}
 
 void	game_init(t_data *game, t_info *info)
 {
@@ -39,7 +32,7 @@ void	game_init(t_data *game, t_info *info)
 	game->textures[3].t_file = info->ea;
 	free_struct(info);
 	read_texture(game);
-	precalculate(game);
+	game->d2pp = (RX / 2) / tan(M_PI / 6);
 	render_walls(game);
 	render_map(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->img, 0, 0);

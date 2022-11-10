@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 04:30:45 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 04:39:19 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void	draw_wall(t_data *game)
 	i = 0;	
 	while (i < RX)
 	{
-		ray_angle = game->angle + atan((i - RX/2)/game->value.d2pp);
+		ray_angle = game->angle + atan((i - 0.5*RX)/game->d2pp);
 		beta = ray_angle - game->angle;
 		get_inter_point(game, &(game->ray), ray_angle);
 		d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y)*cos(beta);
-		wallheight = round(CUBE*(game->value.d2pp/d));
+		wallheight = round(CUBE*(game->d2pp/d));
 		if (wallheight < RY)
 		{
-			start = game->value.RY_2 - wallheight/2;
-			end = game->value.RY_2 + wallheight/2;
+			start = 0.5*RY - wallheight/2;
+			end = 0.5*RY + wallheight/2;
 		}
 		else
 		{
@@ -53,7 +53,7 @@ void	draw_wall(t_data *game)
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - 0.5*RY)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[0], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
@@ -68,7 +68,7 @@ void	draw_wall(t_data *game)
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - 0.5*RY)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[1], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
@@ -83,7 +83,7 @@ void	draw_wall(t_data *game)
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - 0.5*RY)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[2], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
@@ -98,7 +98,7 @@ void	draw_wall(t_data *game)
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - 0.5*RY)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[3], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
