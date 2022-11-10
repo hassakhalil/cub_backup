@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 02:43:14 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 04:33:00 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 typedef struct s_precalculated
 {
 	double	d2pp;
-	double	delta_ang;
 	int		RX_2;
 	int		RY_2;
 }	t_precalculated;

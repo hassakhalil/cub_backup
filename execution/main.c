@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 01:53:44 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 04:32:49 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	precalculate(t_data *game)
 {
-	game->value.d2pp = (RX / 2) / tan(M_PI / 6);	
-	game->value.delta_ang =  FOV / RX;
+	game->value.d2pp = (RX / 2) / tan(M_PI / 6);
 	game->value.RX_2 = RX / 2;
 	game->value.RY_2 = RY / 2;
 }
