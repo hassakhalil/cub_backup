@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 04:36:41 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 04:42:23 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ int				mouse_hook(int button, int x, int y, t_data *game);
 void			read_texture(t_data *game);
 unsigned int	get_pixel(t_texture *data, int x, int y);
 int				ft_exit(t_data *game, int flag);
-void	apdate(t_data *game);
+void			apdate(t_data *game);
 #endif

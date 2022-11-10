@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 01:58:49 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 04:36:00 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 04:41:57 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	main(int ac, char **av)
 	free_tab(tab);
 	game = malloc(sizeof(t_data));
 	game_init(game, info);
-	mlx_hook(game->mlx_window, 17, 1L<<0, ft_exit, game);
-	mlx_hook(game->mlx_window, 2, 1L<<0, key_hook, game);
+	mlx_hook(game->mlx_window, 17, 1L << 0, ft_exit, game);
+	mlx_hook(game->mlx_window, 2, 1L << 0, key_hook, game);
 	mlx_mouse_hook(game->mlx_window, mouse_hook, game);
 	mlx_loop(game->mlx);
 }
