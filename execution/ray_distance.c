@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 07:26:28 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 07:39:16 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,54 +96,62 @@ void	get_ver(t_data *game, double ray_ang)
 	}
 }
 
-void	get_inter_point(t_data *game, t_raydata *ray, double ang)
+void	check_flag(t_data *game)
+{
+	if (game->ray.flag_ver)
+	{
+		game->ray.inter_x = game->ray.x_hor;
+		game->ray.inter_y = game->ray.y_hor;
+		game->ray.v_or_h = 'h';
+	}
+	else
+	{
+		game->ray.inter_x = game->ray.x_ver;
+		game->ray.inter_y = game->ray.y_ver;
+		game->ray.v_or_h = 'v';
+	}
+}
+
+void	compare_d(t_data *game)
+{
+	double	d_ver;
+	double	d_hor;
+
+	d_ver = 0;
+	d_hor = 0;
+	d_ver = hypot(game->player_x - game->ray.x_ver, game->player_y - game->ray.y_ver);
+	d_hor = hypot(game->player_x - game->ray.x_hor, game->player_y - game->ray.y_hor);
+	if (d_hor > d_ver)
+	{
+		game->ray.inter_x = game->ray.x_ver;
+		game->ray.inter_y = game->ray.y_ver;
+		game->ray.v_or_h = 'v';
+	}
+	else
+	{
+		game->ray.inter_x = game->ray.x_hor;
+		game->ray.inter_y = game->ray.y_hor;
+		game->ray.v_or_h = 'h';
+	}
+}
+
+void	get_inter_point(t_data *game, double ang)
 {
 	double	ray_ang;
-	double	d_ver = 0;
-	double	d_hor = 0;
-	
 
 	ray_ang =  norm_angle(ang);
 	get_hor(game, ray_ang);
 	get_ver(game, ray_ang);
 	if (game->ray.flag_ver || game->ray.flag_hor)
-	{
-		if (game->ray.flag_ver)
-		{
-			ray->inter_x = game->ray.x_hor;
-			ray->inter_y = game->ray.y_hor;
-			ray->v_or_h = 'h';
-		}
-		else
-		{
-			ray->inter_x = game->ray.x_ver;
-			ray->inter_y = game->ray.y_ver;
-			ray->v_or_h = 'v';
-		}
-	}
+		check_flag(game);
 	else
-	{
-		d_ver = hypot(game->player_x - game->ray.x_ver, game->player_y - game->ray.y_ver);
-		d_hor = hypot(game->player_x - game->ray.x_hor, game->player_y - game->ray.y_hor);
-		if (d_hor > d_ver)
-		{
-			ray->inter_x = game->ray.x_ver;
-			ray->inter_y = game->ray.y_ver;
-			ray->v_or_h = 'v';
-		}
-		else
-		{
-			ray->inter_x = game->ray.x_hor;
-			ray->inter_y = game->ray.y_hor;
-			ray->v_or_h = 'h';
-		}
-	}
-	if (ray_ang > 0 && ray_ang < M_PI && ray->v_or_h == 'h')
-		ray->wall = 'S';
-	else if (ray->v_or_h == 'h')
-		ray->wall = 'N';
+		compare_d(game);
+	if (ray_ang > 0 && ray_ang < M_PI && game->ray.v_or_h == 'h')
+		game->ray.wall = 'S';
+	else if (game->ray.v_or_h == 'h')
+		game->ray.wall = 'N';
 	 else if (ray_ang < M_PI_2 || ray_ang > 1.5*M_PI)
-	 	ray->wall = 'E';
+	 	game->ray.wall = 'E';
 	else
-	 	ray->wall = 'W';
+	 	game->ray.wall = 'W';
 }

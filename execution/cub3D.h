@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 07:21:21 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 07:39:56 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			draw_map_rays(t_data *game);
 void			render_map(t_data *game);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 double			norm_angle(double angle);
-void			get_inter_point(t_data *game, t_raydata *t_raydata, double ang);
+void			get_inter_point(t_data *game, double ang);
 void			render_walls(t_data *game);
 double			norm_angle(double angle);
 double			ft_angle(char c);
