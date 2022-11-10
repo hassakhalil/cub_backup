@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 07:39:16 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 07:44:44 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void	get_hor(t_data *game, double ray_ang)
 {
 	double	correcth;
-	double	delta_xh = 0;
-	double	delta_yh = 0;
+	double	delta_xh;
+	double	delta_yh;
 
-	game->ray.x_hor = 0;
-	game->ray.y_hor = 0;
 	game->ray.flag_hor = 0;
 	///hor_inter code
 	//first intersection
@@ -57,11 +55,9 @@ void	get_hor(t_data *game, double ray_ang)
 void	get_ver(t_data *game, double ray_ang)
 {
 	double	correctv;
-	double	delta_xv = 0;
-	double	delta_yv = 0;
+	double	delta_xv;
+	double	delta_yv;
 
-	game->ray.x_ver = 0;
-	game->ray.y_ver = 0;
 	game->ray.flag_ver = 0;
 	//ver_inter
 	//first intersection
@@ -117,8 +113,6 @@ void	compare_d(t_data *game)
 	double	d_ver;
 	double	d_hor;
 
-	d_ver = 0;
-	d_hor = 0;
 	d_ver = hypot(game->player_x - game->ray.x_ver, game->player_y - game->ray.y_ver);
 	d_hor = hypot(game->player_x - game->ray.x_hor, game->player_y - game->ray.y_hor);
 	if (d_hor > d_ver)
