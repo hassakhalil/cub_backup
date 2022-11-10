@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 07:39:56 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 08:51:50 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,6 @@ void			read_texture(t_data *game);
 unsigned int	get_pixel(t_texture *data, int x, int y);
 int				ft_exit(t_data *game, int flag);
 void			apdate(t_data *game);
+void			get_ver(t_data *game, double ray_ang);
+void			get_hor(t_data *game, double ray_ang);
 #endif
