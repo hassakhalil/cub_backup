@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 02:44:12 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 03:06:40 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void	draw_wall(t_data *game)
 
 	ray_angle = norm_angle(game->angle - M_PI/6);
 	i = 0;
-	beta = game->angle - ray_angle;
+	
 	while (i < RX)
 	{
+		beta = ray_angle - game->angle;
 		get_inter_point(game, &(game->ray), ray_angle);
 		d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y)*cos(beta);
 		wallheight = round(CUBE*(game->value.d2pp/d));
