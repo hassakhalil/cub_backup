@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:45:16 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 21:14:25 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 02:00:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ unsigned int	get_pixel(t_texture *data, int x, int y)
 	return (*(unsigned int *)dst);
 }
 
+void	draw_player(t_data *game)
+{
+	int	i;
+	int	j;
+
+	i = -10;
+	while (i < 11)
+	{
+		j = -10;
+		while (j < 11)
+		{
+			my_mlx_pixel_put(game, MSF * (game->player_x+j),MSF * (game->player_y+i), 0xFF0000);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_map(t_data *game, int i, int j)
 {
 	int	k;
@@ -42,14 +60,11 @@ void	draw_map(t_data *game, int i, int j)
 			if ((game->map)[i][j] == '1')
 				my_mlx_pixel_put(game, MSF * (CUBE * j + l),
 					MSF * (CUBE * i + k), 0x000000);
-			//if ((pow(((CUBE * i + k) - (game->player_y)), 2)
-			//		+ pow(CUBE * j + l - (game->player_x), 2)) <= 200)
-			//	my_mlx_pixel_put(game, MSF * (CUBE * j + l),
-			//		MSF * (CUBE * i + k), 0xFF0000);
 			l++;
 		}
 		k++;
 	}
+	draw_player(game);
 }
 
 void	render_map(t_data *game)

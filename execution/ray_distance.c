@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 05:07:34 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 01:47:36 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	}
 	else
 	{
-		//compare d_ver and d_hor
 		d_ver = hypot(game->player_x - x_ver, game->player_y - y_ver);
 		d_hor = hypot(game->player_x - x_hor, game->player_y - y_hor);
 		if (d_hor > d_ver)

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 21:14:59 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 01:58:15 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,77 +27,77 @@ void	draw_wall(t_data *game)
 
 	ray_angle = norm_angle(game->angle - M_PI/6);
 	i = 0;
-	beta = norm_angle(ray_angle - game->angle);
+	beta = norm_angle(game->angle - ray_angle);
 	while (i < RX)
 	{
-		get_inter_point(game, &(game->rays[i]), ray_angle);
-		game->rays[i].d = hypot(game->player_x - game->rays[i].inter_x, game->player_y - game->rays[i].inter_y);
-		wallheight = round(((CUBE*game->value.d2pp)/((game->rays[i]).d*cos(beta))));
+		get_inter_point(game, &(game->ray), ray_angle);
+		game->ray.d = hypot(game->player_x - game->ray.inter_x, game->player_y - game->ray.inter_y)*cos(beta);
+		wallheight = round(CUBE*(game->value.d2pp/game->ray.d));
 		if (wallheight < RY)
 		{
-			start = RY/2 - wallheight/2;
-			end = RY/2 + wallheight/2;
+			start = game->value.RY_2 - wallheight/2;
+			end = game->value.RY_2 + wallheight/2;
 		}
 		else
 		{
 			start = 0;
 			end = RY;
 		}
-		if (game->rays[i].wall == 'N')
+		if (game->ray.wall == 'N')
 		{
-			if (game->rays[i].v_or_h == 'v')
-				offset_x = (int)game->rays[i].inter_y % CUBE;
+			if (game->ray.v_or_h == 'v')
+				offset_x = (int)game->ray.inter_y % CUBE;
 			else
-				offset_x = (int)game->rays[i].inter_x % CUBE;
+				offset_x = (int)game->ray.inter_x % CUBE;
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - (RY/2))*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[0], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
 			}
 		}
-		else if (game->rays[i].wall == 'S')
+		else if (game->ray.wall == 'S')
 		{
-			if (game->rays[i].v_or_h == 'v')
-				offset_x = (int)game->rays[i].inter_y % CUBE;
+			if (game->ray.v_or_h == 'v')
+				offset_x = (int)game->ray.inter_y % CUBE;
 			else
-				offset_x = (int)game->rays[i].inter_x % CUBE;
+				offset_x = (int)game->ray.inter_x % CUBE;
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - (RY/2))*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[1], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
 			}
 		}
-		else if (game->rays[i].wall == 'E')
+		else if (game->ray.wall == 'E')
 		{
-			if (game->rays[i].v_or_h == 'v')
-				offset_x = (int)game->rays[i].inter_y % CUBE;
+			if (game->ray.v_or_h == 'v')
+				offset_x = (int)game->ray.inter_y % CUBE;
 			else
-				offset_x = (int)game->rays[i].inter_x % CUBE;
+				offset_x = (int)game->ray.inter_x % CUBE;
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - (RY/2))*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[2], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;
 			}
 		}
-		else if (game->rays[i].wall == 'W')
+		else if (game->ray.wall == 'W')
 		{
-			if (game->rays[i].v_or_h == 'v')
-				offset_x = (int)game->rays[i].inter_y % CUBE;
+			if (game->ray.v_or_h == 'v')
+				offset_x = (int)game->ray.inter_y % CUBE;
 			else
-				offset_x = (int)game->rays[i].inter_x % CUBE;
+				offset_x = (int)game->ray.inter_x % CUBE;
 			y = start;
 			while (y <  end)
 			{
-				offset_y = (y + (wallheight/2) - (RY/2))*((float)game->textures[3].t_height/wallheight);
+				offset_y = (y + (wallheight/2) - game->value.RY_2)*((float)game->textures[3].t_height/wallheight);
 				texel_color = get_pixel(&game->textures[3], offset_x, offset_y);
 				my_mlx_pixel_put(game, i, y, texel_color);
 				y++;

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:35:06 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 21:14:43 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 01:24:01 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	move_for(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
+		apdate(game);
 	}
 }
 
@@ -37,6 +38,7 @@ void	move_back(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
+		apdate(game);
 	}
 }
 
@@ -51,6 +53,7 @@ void	move_left(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
+		apdate(game);
 	}
 }
 
@@ -65,6 +68,7 @@ void	move_right(t_data *game)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
+		apdate(game);
 	}
 }
 
@@ -73,9 +77,15 @@ int	key_hook(int keycode, t_data *game)
 	if (keycode == 53)
 		ft_exit(game, 1);
 	else if (keycode == 123)
+	{
 		game->angle = norm_angle(game->angle - ROT_SPEED);
+		apdate(game);
+	}
 	else if (keycode == 124)
+	{
 		game->angle = norm_angle(game->angle + ROT_SPEED);
+		apdate(game);
+	}
 	else if (keycode == 126 || keycode == 13)
 		move_for(game);
 	else if (keycode == 125 || keycode == 1)

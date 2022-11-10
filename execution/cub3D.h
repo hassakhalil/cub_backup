@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 02:58:20 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/09 20:38:32 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 01:41:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_data {
 	double			player_x;
 	double			player_y;
 	double			angle;
-	t_raydata		rays[RX];
+	t_raydata		ray;
 	t_texture		textures[4];
 	t_precalculated value;
 	int				floor;
@@ -96,4 +96,5 @@ int				mouse_hook(int button, int x, int y, t_data *game);
 void			read_texture(t_data *game);
 unsigned int	get_pixel(t_texture *data, int x, int y);
 int				ft_exit(t_data *game, int flag);
+void	apdate(t_data *game);
 #endif
