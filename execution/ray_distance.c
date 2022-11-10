@@ -6,40 +6,30 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 06:35:08 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 01:47:36 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/10 07:26:28 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	get_inter_point(t_data *game, t_raydata *ray, double ang)
+void	get_hor(t_data *game, double ray_ang)
 {
-	double	ray_ang;
 	double	correcth;
-	double	correctv;
-	double	delta_xv = 0;
-	double	delta_yv = 0;
 	double	delta_xh = 0;
 	double	delta_yh = 0;
-	double	x_ver = 0;
-	double	y_ver = 0;
-	double	x_hor = 0;
-	double	y_hor = 0;
-	double	d_ver = 0;
-	double	d_hor = 0;
-	int	flag_ver = 0;
-	int	flag_hor = 0;
-	
-	ray_ang =  norm_angle(ang);
+
+	game->ray.x_hor = 0;
+	game->ray.y_hor = 0;
+	game->ray.flag_hor = 0;
 	///hor_inter code
 	//first intersection
 	correcth = 0;
-	y_hor = floor(game->player_y / CUBE) * CUBE;
+	game->ray.y_hor = floor(game->player_y / CUBE) * CUBE;
 	if (ray_ang > 0 && ray_ang < M_PI)
-		y_hor += CUBE;
+		game->ray.y_hor += CUBE;
 	else
 		correcth = -1;
-	x_hor = game->player_x + (y_hor - game->player_y) / tan(ray_ang);
+	game->ray.x_hor = game->player_x + (game->ray.y_hor - game->player_y) / tan(ray_ang);
 	//finding delta x and delta y
 	delta_yh = CUBE;
 	if (!(ray_ang > 0 && ray_ang < M_PI))
@@ -47,16 +37,41 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	delta_xh = CUBE / tan(ray_ang);
 	if ((!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && delta_xh > 0) || ((ray_ang < M_PI_2  || ray_ang > 1.5*M_PI) && delta_xh < 0))
 		delta_xh *= -1;
+	while (1)
+	{
+		if (game->ray.x_hor > 0 && game->ray.y_hor > 0 && game->ray.x_hor < game->map_width && game->ray.y_hor < game->map_length)
+		{
+			if (wall(game, game->ray.x_hor, game->ray.y_hor + correcth, 0) == 1)
+				break;
+			game->ray.x_hor += delta_xh;
+			game->ray.y_hor += delta_yh;
+		}
+		else
+		{
+			game->ray.flag_hor = -1;
+			break ;
+		}
+	}
+}
 
+void	get_ver(t_data *game, double ray_ang)
+{
+	double	correctv;
+	double	delta_xv = 0;
+	double	delta_yv = 0;
+
+	game->ray.x_ver = 0;
+	game->ray.y_ver = 0;
+	game->ray.flag_ver = 0;
 	//ver_inter
 	//first intersection
 	correctv = 0;
-	x_ver = floor(game->player_x / CUBE) * CUBE;
+	game->ray.x_ver = floor(game->player_x / CUBE) * CUBE;
 	if (ray_ang < M_PI_2  || ray_ang > 1.5*M_PI)
-		x_ver += CUBE;
+		game->ray.x_ver += CUBE;
 	else
 		correctv = -1;
-	y_ver = game->player_y + (x_ver - game->player_x)*tan(ray_ang);
+	game->ray.y_ver = game->player_y + (game->ray.x_ver - game->player_x)*tan(ray_ang);
 	//finding delta y and delta x
 	delta_xv = CUBE;
 	if (!(ray_ang < M_PI_2  || ray_ang > 1.5*M_PI))
@@ -64,65 +79,62 @@ void	get_inter_point(t_data *game, t_raydata *ray, double ang)
 	delta_yv = CUBE * tan(ray_ang);
 	if ((!(ray_ang > 0 && ray_ang < M_PI) && delta_yv > 0) || ((ray_ang > 0 && ray_ang < M_PI) && delta_yv < 0))
 		delta_yv *= -1;
-	while (1)
+		while (1)
 	{
-		if (x_ver > 0 && y_ver > 0 && x_ver < game->map_width && y_ver < game->map_length)
+		if (game->ray.x_ver > 0 && game->ray.y_ver > 0 && game->ray.x_ver < game->map_width && game->ray.y_ver < game->map_length)
 		{
-			if (wall(game, x_ver + correctv, y_ver, 0) == 1)
+			if (wall(game, game->ray.x_ver + correctv, game->ray.y_ver, 0) == 1)
 				break;
-			x_ver += delta_xv;
-			y_ver += delta_yv;
+			game->ray.x_ver += delta_xv;
+			game->ray.y_ver += delta_yv;
 		}
 		else
 		{
-			flag_ver = -1;
+			game->ray.flag_ver = -1;
 			break ;
 		}
 	}
-	while (1)
+}
+
+void	get_inter_point(t_data *game, t_raydata *ray, double ang)
+{
+	double	ray_ang;
+	double	d_ver = 0;
+	double	d_hor = 0;
+	
+
+	ray_ang =  norm_angle(ang);
+	get_hor(game, ray_ang);
+	get_ver(game, ray_ang);
+	if (game->ray.flag_ver || game->ray.flag_hor)
 	{
-		if (x_hor > 0 && y_hor > 0 && x_hor < game->map_width && y_hor < game->map_length)
+		if (game->ray.flag_ver)
 		{
-			if (wall(game, x_hor, y_hor + correcth, 0) == 1)
-				break;
-			x_hor += delta_xh;
-			y_hor += delta_yh;
-		}
-		else
-		{
-			flag_hor = -1;
-			break ;
-		}
-	}
-	if (flag_ver || flag_hor)
-	{
-		if (flag_ver)
-		{
-			ray->inter_x = x_hor;
-			ray->inter_y = y_hor;
+			ray->inter_x = game->ray.x_hor;
+			ray->inter_y = game->ray.y_hor;
 			ray->v_or_h = 'h';
 		}
 		else
 		{
-			ray->inter_x = x_ver;
-			ray->inter_y = y_ver;
+			ray->inter_x = game->ray.x_ver;
+			ray->inter_y = game->ray.y_ver;
 			ray->v_or_h = 'v';
 		}
 	}
 	else
 	{
-		d_ver = hypot(game->player_x - x_ver, game->player_y - y_ver);
-		d_hor = hypot(game->player_x - x_hor, game->player_y - y_hor);
+		d_ver = hypot(game->player_x - game->ray.x_ver, game->player_y - game->ray.y_ver);
+		d_hor = hypot(game->player_x - game->ray.x_hor, game->player_y - game->ray.y_hor);
 		if (d_hor > d_ver)
 		{
-			ray->inter_x = x_ver;
-			ray->inter_y = y_ver;
+			ray->inter_x = game->ray.x_ver;
+			ray->inter_y = game->ray.y_ver;
 			ray->v_or_h = 'v';
 		}
 		else
 		{
-			ray->inter_x = x_hor;
-			ray->inter_y = y_hor;
+			ray->inter_x = game->ray.x_hor;
+			ray->inter_y = game->ray.y_hor;
 			ray->v_or_h = 'h';
 		}
 	}
