@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 04:32:32 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/09 01:51:33 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:34:41 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**f_malloc(void)
 {
 	char	**map;
 
-	map = malloc(sizeof(char *) * 100);
+	map = malloc(sizeof(char *) * 100000);
 	if (!map)
 		return (NULL);
 	return (map);

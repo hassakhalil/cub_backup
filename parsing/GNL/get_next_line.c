@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 22:19:53 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/21 23:15:02 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/10 10:16:40 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,3 @@ char	*get_next_line(int fd)
 	extract_line_modify_save(&save, &line);
 	return (line);
 }
-// int main()
-// {
-// 	int fd = open("test", O_RDONLY);
-// 	char *str;
-// 	int fd1 = open("test1", O_)
-// 	str = get_next_line(fd);
-// 	printf("%s\n", str);
-// 	free(str);
-// 	str = get_next_line(fd);
-// 	printf("%s\n", str);
-// 	free(str);
-// 	str = get_next_line(fd);
-// 	printf("%s\n", str);
-// 	free(str);
-// 	str = get_next_line(fd);
-// 	printf("%s\n", str);
-// }

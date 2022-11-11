@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 04:20:21 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/04 04:34:36 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:02:46 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	errors(int err)
 {
 	if (err == 1)
 	{
-		write(2, "Error in file format\n", 21);
+		write(2, "Error in the file\n", 19);
 		exit(1);
 	}
 }

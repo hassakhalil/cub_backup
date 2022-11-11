@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identifiers_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/01 22:36:25 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:15:10 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ int	check_textures(char *str, int i)
 	char	*file;
 	char	*extension;
 
-	if (!is_blank(str[i]) && str[0] == 'W' && str[1] != ' ')
+	if (!is_blank(str[i]))
 		return (0);
 	while (str && is_blank(str[i]))
 		i++;
 	extension = ft_strrchr(str + i, '.');
-	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4)
-		|| ft_strncmp(extension, ".xpm", 4) != 0)
+	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4))
 		return (-1);
 	len = get_len(str + i);
 	file = ft_substr(str + i, 0, len);

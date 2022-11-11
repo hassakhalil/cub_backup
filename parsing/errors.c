@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:32:43 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/04 04:22:52 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:11:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	print_errors2(t_parse *p)
 	}
 	if (p->no_map == 1)
 	{
-		printf("There is no map int the file\n");
+		printf("There is no map in the file\n");
 		return (1);
 	}
 	if (p->inv_line == 1 || p->flag == 1)

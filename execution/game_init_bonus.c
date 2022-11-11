@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 09:06:00 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 09:45:02 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:59:06 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	game_init_bonus(t_data *game, t_info *info)
 	game->textures[3].t_file = info->ea;
 	free_struct(info);
 	read_texture(game);
+	if (game->map_columns * CUBE * MSF >= RX
+		|| game->map_rows * CUBE * MSF >= RY)
+		ft_exit(game, 2);
 	game->d2pp = (RX / 2) / tan(M_PI / 6);
 	render_walls(game);
 	render_map(game);

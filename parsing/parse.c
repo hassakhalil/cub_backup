@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/04 04:00:05 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:34:03 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**init_file(char *file, int fd)
 	fd = check_file(file);
 	if (fd == -1)
 		errors(1);
-	tab = malloc(sizeof(char *) * 100);
+	tab = malloc(sizeof(char *) * 100000);
 	while (1)
 	{
 		line = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 03:33:40 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 07:40:12 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:19:22 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	draw_wall(t_data *game)
 		else if (game->ray.wall == 'S')
 			draw_ray(game, 1, wallheight, i);
 		else if (game->ray.wall == 'E')
-			draw_ray(game, 2, wallheight, i);
-		else if (game->ray.wall == 'W')
 			draw_ray(game, 3, wallheight, i);
+		else if (game->ray.wall == 'W')
+			draw_ray(game, 2, wallheight, i);
 		i++;
 	}
 }

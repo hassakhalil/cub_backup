@@ -6,7 +6,7 @@
 #    By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 23:58:46 by hkhalil           #+#    #+#              #
-#    Updated: 2022/11/10 10:14:38 by hkhalil          ###   ########.fr        #
+#    Updated: 2022/11/11 20:00:24 by hkhalil          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ = $(SRC:.c=.o)
 
 BOBJ = $(BSRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror #-O3  -g3  #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
@@ -43,6 +43,6 @@ clean:
 	rm -rf $(OBJ) $(BOBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(BNAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 03:11:09 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/11/10 09:53:01 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:58:04 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	free_game(t_data *game, int flag)
 	mlx_destroy_window(game->mlx, game->mlx_window);
 	if (flag)
 	{
-		mlx_destroy_image(game->mlx, game->img);
+		if (flag == 1)
+			mlx_destroy_image(game->mlx, game->img);
+		else
+			write(2, "map too big\n", 13);
 		free(game);
 	}
 }
